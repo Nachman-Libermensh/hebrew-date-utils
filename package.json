@@ -88,7 +88,7 @@
     "date-fns",
     "hebcal"
   ],
-  "author": "",
+  "author": "Nachman Libermensh",
   "license": "MIT",
   "sideEffects": false,
   "type": "module",
@@ -100,12 +100,12 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/your-org/hebrew-date-utils.git"
+    "url": "git+https://github.com/Nachman-Libermensh/hebrew-date-utils.git"
   },
   "bugs": {
-    "url": "https://github.com/your-org/hebrew-date-utils/issues"
+    "url": "https://github.com/Nachman-Libermensh/hebrew-date-utils/issues"
   },
-  "homepage": "https://github.com/your-org/hebrew-date-utils#readme",
+  "homepage": "https://github.com/Nachman-Libermensh/hebrew-date-utils#readme",
   "dependencies": {
     "@hebcal/core": "^6.0.8",
     "date-fns": "^4.1.0"
