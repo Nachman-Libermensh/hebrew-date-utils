@@ -190,6 +190,7 @@ export function ReactPickerDemo() {
       <CodeBlock
         language="tsx"
         filename={isRangeMode ? "range-picker.tsx" : "single-picker.tsx"}
+        sourcePath="apps/docs/components/react-picker-demo.tsx"
         code={isRangeMode ? rangeCode : singleCode}
         highlightLines={isRangeMode ? [1, 4, 5, 9, 10, 12, 15] : [1, 4, 5, 8]}
       />

@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Github } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +11,7 @@ import {
 } from "@/components/ui/card";
 import type { ApiModuleDoc } from "./catalog-types";
 import { ApiExportCard } from "./api-export-card";
+import { getSourceFileUrl } from "./source-links";
 
 interface ApiModuleDetailsProps {
   moduleDoc: ApiModuleDoc;
@@ -32,13 +34,18 @@ export function ApiModuleDetails({ moduleDoc }: ApiModuleDetailsProps) {
         <h1 className="mb-0">{moduleDoc.title}</h1>
         <p className="mt-0 text-sm text-foreground/85">{moduleDoc.summary}</p>
 
-        <div className="flex flex-wrap gap-2 text-xs">
-          <span className="rounded-full border border-foreground/10 bg-background/70 px-2 py-1">
-            Source: {moduleDoc.sourcePath}
-          </span>
-        </div>
-
         <div className="flex flex-wrap gap-2">
+          <Button asChild variant="outline" size="sm">
+            <a
+              href={getSourceFileUrl(moduleDoc.sourcePath)}
+              target="_blank"
+              rel="noreferrer"
+              className="gap-1.5"
+            >
+              <Github className="size-4" />
+              קוד מקור
+            </a>
+          </Button>
           <Button asChild variant="outline" size="sm">
             <Link href="/docs/api">חזרה לכל המודולים</Link>
           </Button>

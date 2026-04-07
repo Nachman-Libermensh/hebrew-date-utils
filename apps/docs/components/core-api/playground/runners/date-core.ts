@@ -9,13 +9,22 @@ import {
   formatDualDate,
   formatGregorian,
   formatHebrew,
+  formatHebrewDate,
   fromGregorianDate,
   fromHebrewDate,
+  gregorianMonthNameEn,
+  gregorianMonthNameHe,
   getWeekdayName,
+  hebrewDayGematriya,
+  hebrewDayOfWeek,
+  hebrewDayOfWeekFull,
+  hebrewYearGematriya,
   isDateInGregorianMonth,
   isDateInHebrewMonth,
+  isErevShabbat,
   isSameGregorianDate,
   isSameHebrewDate,
+  isShabbat,
   isWithinDualDateRange,
   makeDualDateRange,
   nextHebrewMonth,
@@ -181,6 +190,51 @@ export const dateCoreRunners: RunnerMap = {
   formatDualDate: ({ primaryDate }) => ({
     invocation: `formatDualDate(${dateExpr(primaryDate)})`,
     output: formatDualDate(primaryDate),
+  }),
+  formatHebrewDate: ({ primaryDate }) => ({
+    invocation: `formatHebrewDate(${dateExpr(primaryDate)})`,
+    output: formatHebrewDate(primaryDate),
+  }),
+  hebrewYearGematriya: ({ primaryDate }) => {
+    const year = toDualDate(primaryDate).hebYear;
+    return {
+      invocation: `hebrewYearGematriya(${year})`,
+      output: hebrewYearGematriya(year),
+    };
+  },
+  hebrewDayGematriya: ({ primaryDate }) => ({
+    invocation: `hebrewDayGematriya(${dateExpr(primaryDate)})`,
+    output: hebrewDayGematriya(primaryDate),
+  }),
+  gregorianMonthNameHe: ({ primaryDate }) => {
+    const month = primaryDate.getMonth();
+    return {
+      invocation: `gregorianMonthNameHe(${month})`,
+      output: gregorianMonthNameHe(month),
+    };
+  },
+  gregorianMonthNameEn: ({ primaryDate }) => {
+    const month = primaryDate.getMonth();
+    return {
+      invocation: `gregorianMonthNameEn(${month})`,
+      output: gregorianMonthNameEn(month),
+    };
+  },
+  hebrewDayOfWeek: ({ primaryDate }) => ({
+    invocation: `hebrewDayOfWeek(${dateExpr(primaryDate)})`,
+    output: hebrewDayOfWeek(primaryDate),
+  }),
+  hebrewDayOfWeekFull: ({ primaryDate }) => ({
+    invocation: `hebrewDayOfWeekFull(${dateExpr(primaryDate)})`,
+    output: hebrewDayOfWeekFull(primaryDate),
+  }),
+  isShabbat: ({ primaryDate }) => ({
+    invocation: `isShabbat(${dateExpr(primaryDate)})`,
+    output: isShabbat(primaryDate),
+  }),
+  isErevShabbat: ({ primaryDate }) => ({
+    invocation: `isErevShabbat(${dateExpr(primaryDate)})`,
+    output: isErevShabbat(primaryDate),
   }),
   getWeekdayName: ({ primaryDate, locale }) => ({
     invocation: `getWeekdayName(${dateExpr(primaryDate)}, "${getUiLocale(locale)}", "long")`,

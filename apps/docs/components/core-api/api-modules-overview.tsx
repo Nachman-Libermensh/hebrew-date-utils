@@ -1,4 +1,5 @@
 import Link from "next/link";
+import { Github } from "lucide-react";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import {
@@ -10,6 +11,7 @@ import {
   CardTitle,
 } from "@/components/ui/card";
 import type { ApiModuleDoc } from "./catalog-types";
+import { getSourceFileUrl } from "./source-links";
 
 interface ApiModulesOverviewProps {
   modules: ApiModuleDoc[];
@@ -49,9 +51,6 @@ export function ApiModulesOverview({ modules }: ApiModulesOverviewProps) {
               </CardHeader>
 
               <CardContent className="space-y-3 text-sm">
-                <p className="m-0 text-xs text-muted-foreground">
-                  Source: {moduleDoc.sourcePath}
-                </p>
                 <div className="flex flex-wrap gap-1.5">
                   {functions.slice(0, 4).map((item) => (
                     <Badge key={item.name} variant="secondary">
@@ -66,7 +65,18 @@ export function ApiModulesOverview({ modules }: ApiModulesOverviewProps) {
                 </div>
               </CardContent>
 
-              <CardFooter className="justify-end">
+              <CardFooter className="flex-wrap justify-between gap-2">
+                <Button asChild variant="outline" size="sm">
+                  <a
+                    href={getSourceFileUrl(moduleDoc.sourcePath)}
+                    target="_blank"
+                    rel="noreferrer"
+                    className="gap-1.5"
+                  >
+                    <Github className="size-4" />
+                    קוד מקור
+                  </a>
+                </Button>
                 <Button asChild size="sm">
                   <Link href={`/docs/api/${moduleDoc.slug}`}>כניסה למודול</Link>
                 </Button>

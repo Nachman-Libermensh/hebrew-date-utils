@@ -1,19 +1,15 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Noto_Sans_Hebrew, Space_Grotesk, Inter } from "next/font/google";
+import { Noto_Sans_Hebrew } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DirectionProvider } from "@/components/ui/direction";
-
-const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-
-const displayFont = Space_Grotesk({
-  subsets: ["latin"],
-  variable: "--font-display",
-});
+import { TodayHebrewGematriya } from "@/components/today-hebrew-gematria";
 
 const hebrewFont = Noto_Sans_Hebrew({
+  weight: ["300", "400", "500", "700"],
+  display: "swap",
   subsets: ["hebrew", "latin"],
   variable: "--font-hebrew",
 });
@@ -36,13 +32,9 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
+      dir="rtl"
       lang="he-IL"
-      className={cn(
-        displayFont.variable,
-        hebrewFont.variable,
-        "font-sans",
-        inter.variable,
-      )}
+      className={cn(hebrewFont.variable, "font-sans")}
     >
       <body>
         <DirectionProvider dir="rtl">
@@ -63,6 +55,7 @@ export default function RootLayout({
               <main className="page-content">{children}</main>
               <footer className="site-footer">
                 <p>Built for date-only Hebrew and Gregorian workflows.</p>
+                <TodayHebrewGematriya />
               </footer>
             </div>
           </TooltipProvider>

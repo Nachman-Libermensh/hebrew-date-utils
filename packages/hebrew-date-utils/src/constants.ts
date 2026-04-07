@@ -18,6 +18,25 @@ export const GREGORIAN_MONTH_NAMES_EN = [
   "December",
 ] as const;
 
+export const GREGORIAN_MONTH_NAMES_HE = [
+  "ינואר",
+  "פברואר",
+  "מרץ",
+  "אפריל",
+  "מאי",
+  "יוני",
+  "יולי",
+  "אוגוסט",
+  "ספטמבר",
+  "אוקטובר",
+  "נובמבר",
+  "דצמבר",
+] as const;
+
+// Backward-friendly aliases for consumers that prefer shorter constant names.
+export const GREG_MONTH_NAMES_EN = GREGORIAN_MONTH_NAMES_EN;
+export const GREG_MONTH_NAMES_HE = GREGORIAN_MONTH_NAMES_HE;
+
 export const HEBREW_MONTH_NAMES_EN: Record<number, string> = {
   [months.NISAN]: "Nisan",
   [months.IYYAR]: "Iyyar",

@@ -1,6 +1,7 @@
 "use client";
 
 import * as React from "react";
+import { Github } from "lucide-react";
 import { Prism as SyntaxHighlighter } from "react-syntax-highlighter";
 import { atomDark } from "react-syntax-highlighter/dist/esm/styles/prism";
 
@@ -14,6 +15,7 @@ type TabSpec = {
 type CodeBlockProps = {
   language: string;
   filename?: string;
+  sourcePath?: string;
   highlightLines?: number[];
 } & (
   | {
@@ -33,6 +35,7 @@ function cx(...parts: Array<string | false | null | undefined>): string {
 export function CodeBlock({
   language,
   filename,
+  sourcePath,
   code,
   tabs = [],
   highlightLines = [],
@@ -54,6 +57,9 @@ export function CodeBlock({
   const activeHighlightLines = tabsExist
     ? (tabs[activeTab]?.highlightLines ?? [])
     : highlightLines;
+  const sourceHref = sourcePath
+    ? `https://github.com/Nachman-Libermensh/hebrew-date-utils/blob/main/${sourcePath.replace(/^\/+/, "")}`
+    : "https://github.com/Nachman-Libermensh/hebrew-date-utils";
 
   const highlightedLines = React.useMemo(
     () => new Set(activeHighlightLines),
@@ -72,27 +78,42 @@ export function CodeBlock({
   return (
     <div className="docs-code-block">
       <div className="docs-code-header">
-        {tabsExist ? (
-          <div className="docs-code-tabs" role="tablist" aria-label="Code tabs">
-            {tabs.map((tab, index) => (
-              <button
-                key={tab.name}
-                type="button"
-                role="tab"
-                aria-selected={activeTab === index}
-                className={cx(
-                  "docs-code-tab",
-                  activeTab === index && "docs-code-tab-active",
-                )}
-                onClick={() => setActiveTab(index)}
-              >
-                {tab.name}
-              </button>
-            ))}
-          </div>
-        ) : (
-          <div className="docs-code-filename">{filename}</div>
-        )}
+        <div className="docs-code-meta">
+          {tabsExist ? (
+            <div
+              className="docs-code-tabs"
+              role="tablist"
+              aria-label="Code tabs"
+            >
+              {tabs.map((tab, index) => (
+                <button
+                  key={tab.name}
+                  type="button"
+                  role="tab"
+                  aria-selected={activeTab === index}
+                  className={cx(
+                    "docs-code-tab",
+                    activeTab === index && "docs-code-tab-active",
+                  )}
+                  onClick={() => setActiveTab(index)}
+                >
+                  {tab.name}
+                </button>
+              ))}
+            </div>
+          ) : null}
+
+          <a
+            className="docs-code-source"
+            href={sourceHref}
+            target="_blank"
+            rel="noreferrer"
+            aria-label={filename ? `קוד מקור עבור ${filename}` : "קוד מקור"}
+          >
+            <Github size={14} />
+            קוד מקור
+          </a>
+        </div>
 
         <button
           type="button"

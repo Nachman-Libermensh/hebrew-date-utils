@@ -12,6 +12,7 @@ export function Demo() {
   const [value, setValue] = useState<Date | undefined>();
 
 return (
+
 <HebrewDatePicker
       value={value}
       onChange={setValue}
@@ -101,6 +102,7 @@ The component exposes customization props inspired by react-day-picker style ext
 <CodeBlock
   language="tsx"
   filename="basic-picker.tsx"
+  sourcePath="apps/docs/app/docs/react-picker/page.mdx"
   code={basicUsageCode}
   highlightLines={[2, 5, 9, 10]}
 />
@@ -110,6 +112,7 @@ The component exposes customization props inspired by react-day-picker style ext
 <CodeBlock
   language="tsx"
   filename="picker-customization.tsx"
+  sourcePath="apps/docs/app/docs/react-picker/page.mdx"
   tabs={customizationTabs}
 />
 
