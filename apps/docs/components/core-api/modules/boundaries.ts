@@ -13,7 +13,8 @@ export const boundariesModule: ApiModuleDoc = {
     {
       name: "getGregorianMonthFirstDay",
       kind: "function",
-      signature: "getGregorianMonthFirstDay(year: number, month: number): DualDate",
+      signature:
+        "getGregorianMonthFirstDay(year: number, month: number): DualDate",
       description: "היום הראשון בחודש לועזי (month הוא zero-based).",
       usage: "getGregorianMonthFirstDay(2026, 3);",
       output: "DualDate של היום הראשון.",
@@ -21,7 +22,8 @@ export const boundariesModule: ApiModuleDoc = {
     {
       name: "getGregorianMonthLastDay",
       kind: "function",
-      signature: "getGregorianMonthLastDay(year: number, month: number): DualDate",
+      signature:
+        "getGregorianMonthLastDay(year: number, month: number): DualDate",
       description: "היום האחרון בחודש לועזי.",
       usage: "getGregorianMonthLastDay(2026, 3);",
       output: "DualDate של היום האחרון.",

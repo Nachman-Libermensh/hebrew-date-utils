@@ -16,7 +16,8 @@ export const arithmeticModule: ApiModuleDoc = {
       signature:
         "differenceInDualDays(left: DualDateInput, right: DualDateInput): number",
       description: "הפרש ימים (חתום) לפי לוח לועזי.",
-      usage: "differenceInDualDays(new Date(2026, 3, 10), new Date(2026, 3, 1));",
+      usage:
+        "differenceInDualDays(new Date(2026, 3, 10), new Date(2026, 3, 1));",
       output: "מספר ימים (לדוגמה 9).",
     },
     {
@@ -25,7 +26,8 @@ export const arithmeticModule: ApiModuleDoc = {
       signature:
         "differenceInDualMonths(left: DualDateInput, right: DualDateInput): number",
       description: "הפרש חודשי לוח לועזי (חתום).",
-      usage: "differenceInDualMonths(new Date(2026, 9, 1), new Date(2026, 0, 1));",
+      usage:
+        "differenceInDualMonths(new Date(2026, 9, 1), new Date(2026, 0, 1));",
       output: "מספר חודשים (לדוגמה 9).",
     },
     {
@@ -34,7 +36,8 @@ export const arithmeticModule: ApiModuleDoc = {
       signature:
         "differenceInDualYears(left: DualDateInput, right: DualDateInput): number",
       description: "הפרש שנות לוח לועזי (חתום).",
-      usage: "differenceInDualYears(new Date(2028, 0, 1), new Date(2026, 0, 1));",
+      usage:
+        "differenceInDualYears(new Date(2028, 0, 1), new Date(2026, 0, 1));",
       output: "מספר שנים.",
     },
     {

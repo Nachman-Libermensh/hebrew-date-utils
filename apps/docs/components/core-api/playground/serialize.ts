@@ -36,7 +36,9 @@ function toPreview(value: unknown, depth = 0): unknown {
 
   if (Array.isArray(value)) {
     const limit = 8;
-    const preview = value.slice(0, limit).map((item) => toPreview(item, depth + 1));
+    const preview = value
+      .slice(0, limit)
+      .map((item) => toPreview(item, depth + 1));
     if (value.length > limit) {
       return {
         total: value.length,

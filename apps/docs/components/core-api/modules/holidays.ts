@@ -16,7 +16,8 @@ export const holidaysModule: ApiModuleDoc = {
       signature:
         "getHolidaysOn(date: DualDateInput, options?: HolidayQueryOptions): HolidayInfo[]",
       description: "מחזיר אירועי חג בתאריך מסוים.",
-      usage: 'getHolidaysOn(new Date(2026, 8, 12), { il: true, locale: "he" });',
+      usage:
+        'getHolidaysOn(new Date(2026, 8, 12), { il: true, locale: "he" });',
       output: "HolidayInfo[].",
     },
     {
@@ -41,7 +42,8 @@ export const holidaysModule: ApiModuleDoc = {
     {
       name: "isHoliday",
       kind: "function",
-      signature: "isHoliday(date: DualDateInput, options?: HolidayQueryOptions): boolean",
+      signature:
+        "isHoliday(date: DualDateInput, options?: HolidayQueryOptions): boolean",
       description: "בודק האם קיים לפחות חג אחד בתאריך.",
       usage: "isHoliday(new Date(2026, 8, 12), { il: true });",
       output: "boolean.",

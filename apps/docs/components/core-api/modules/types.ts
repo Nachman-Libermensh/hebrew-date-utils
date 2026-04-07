@@ -37,7 +37,8 @@ export const typesModule: ApiModuleDoc = {
       kind: "type",
       signature: "Date | HDate | DualDate | HebrewDateParts",
       description: "טיפוס קלט אחיד לרוב פונקציות הספריה.",
-      usage: "function normalize(input: DualDateInput) { return toDualDate(input); }",
+      usage:
+        "function normalize(input: DualDateInput) { return toDualDate(input); }",
       output: "טיפוס compile-time.",
     },
     {
@@ -45,7 +46,8 @@ export const typesModule: ApiModuleDoc = {
       kind: "interface",
       signature: "{ start: DualDate; end: DualDate }",
       description: "טווח תאריכים משולב.",
-      usage: "const range: DualDateRange = makeDualDateRange(new Date(), new Date());",
+      usage:
+        "const range: DualDateRange = makeDualDateRange(new Date(), new Date());",
       output: "טיפוס compile-time.",
     },
     {

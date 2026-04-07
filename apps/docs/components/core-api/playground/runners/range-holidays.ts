@@ -101,7 +101,9 @@ export const rangeHolidayRunners: RunnerMap = {
     return {
       invocation: `getHolidaysBetween(${dateExpr(bounded.start)}, ${dateExpr(bounded.end)}, { il: ${inIsrael}, locale: "${getHolidayLocale(locale)}" })`,
       output: asPreview(values),
-      notes: bounded.clamped ? "הטווח הוגבל לשנה אחת לצורך דמו מהיר." : undefined,
+      notes: bounded.clamped
+        ? "הטווח הוגבל לשנה אחת לצורך דמו מהיר."
+        : undefined,
     };
   },
   isHoliday: ({ primaryDate, locale, inIsrael }) => ({

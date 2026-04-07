@@ -1,10 +1,6 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import {
-  Noto_Sans_Hebrew,
-  Space_Grotesk,
-  Inter,
-} from "next/font/google";
+import { Noto_Sans_Hebrew, Space_Grotesk, Inter } from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";

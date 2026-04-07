@@ -13,7 +13,8 @@ export const navigationModule: ApiModuleDoc = {
     {
       name: "addGregorianDays",
       kind: "function",
-      signature: "addGregorianDays(input: DualDateInput, amount: number): DualDate",
+      signature:
+        "addGregorianDays(input: DualDateInput, amount: number): DualDate",
       description: "הזזה לועזית בימים.",
       usage: "addGregorianDays(new Date(2026, 3, 5), 10);",
       output: "DualDate.",
@@ -21,7 +22,8 @@ export const navigationModule: ApiModuleDoc = {
     {
       name: "addGregorianMonths",
       kind: "function",
-      signature: "addGregorianMonths(input: DualDateInput, amount: number): DualDate",
+      signature:
+        "addGregorianMonths(input: DualDateInput, amount: number): DualDate",
       description: "הזזה לועזית בחודשים.",
       usage: "addGregorianMonths(new Date(2026, 3, 5), 2);",
       output: "DualDate.",
@@ -29,7 +31,8 @@ export const navigationModule: ApiModuleDoc = {
     {
       name: "addGregorianYears",
       kind: "function",
-      signature: "addGregorianYears(input: DualDateInput, amount: number): DualDate",
+      signature:
+        "addGregorianYears(input: DualDateInput, amount: number): DualDate",
       description: "הזזה לועזית בשנים.",
       usage: "addGregorianYears(new Date(2026, 3, 5), 1);",
       output: "DualDate.",
@@ -37,7 +40,8 @@ export const navigationModule: ApiModuleDoc = {
     {
       name: "addHebrewDays",
       kind: "function",
-      signature: "addHebrewDays(input: DualDateInput, amount: number): DualDate",
+      signature:
+        "addHebrewDays(input: DualDateInput, amount: number): DualDate",
       description: "הזזה עברית בימים.",
       usage: "addHebrewDays(new Date(2026, 3, 5), 10);",
       output: "DualDate.",
@@ -45,7 +49,8 @@ export const navigationModule: ApiModuleDoc = {
     {
       name: "addHebrewMonths",
       kind: "function",
-      signature: "addHebrewMonths(input: DualDateInput, amount: number): DualDate",
+      signature:
+        "addHebrewMonths(input: DualDateInput, amount: number): DualDate",
       description: "הזזה עברית בחודשים.",
       usage: "addHebrewMonths(new Date(2026, 3, 5), 2);",
       output: "DualDate.",
@@ -53,7 +58,8 @@ export const navigationModule: ApiModuleDoc = {
     {
       name: "addHebrewYears",
       kind: "function",
-      signature: "addHebrewYears(input: DualDateInput, amount: number): DualDate",
+      signature:
+        "addHebrewYears(input: DualDateInput, amount: number): DualDate",
       description: "הזזה עברית בשנים.",
       usage: "addHebrewYears(new Date(2026, 3, 5), 1);",
       output: "DualDate.",

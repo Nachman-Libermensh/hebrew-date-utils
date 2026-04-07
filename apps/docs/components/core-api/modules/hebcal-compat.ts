@@ -5,9 +5,7 @@ export const hebcalCompatModule: ApiModuleDoc = {
   title: "hebcal-compat.ts",
   sourcePath: "packages/hebrew-date-utils/src/hebcal-compat.ts",
   summary: "Re-exports של אובייקטי Hebcal לשימוש מתקדם.",
-  notes: [
-    "מאפשר לצרוך API מתקדם של Hebcal בלי תלות ישירה נוספת אצל המשתמש.",
-  ],
+  notes: ["מאפשר לצרוך API מתקדם של Hebcal בלי תלות ישירה נוספת אצל המשתמש."],
   exports: [
     {
       name: "HDate",

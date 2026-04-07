@@ -30,7 +30,9 @@ export function ApiModulesOverview({ modules }: ApiModulesOverviewProps) {
 
       <div className="grid gap-4 md:grid-cols-2">
         {modules.map((moduleDoc) => {
-          const functions = moduleDoc.exports.filter((item) => item.kind === "function");
+          const functions = moduleDoc.exports.filter(
+            (item) => item.kind === "function",
+          );
           return (
             <Card
               key={moduleDoc.slug}
@@ -39,7 +41,9 @@ export function ApiModulesOverview({ modules }: ApiModulesOverviewProps) {
               <CardHeader className="space-y-2">
                 <div className="flex flex-wrap items-center gap-2">
                   <CardTitle>{moduleDoc.title}</CardTitle>
-                  <Badge variant="outline">{moduleDoc.exports.length} exports</Badge>
+                  <Badge variant="outline">
+                    {moduleDoc.exports.length} exports
+                  </Badge>
                 </div>
                 <CardDescription>{moduleDoc.summary}</CardDescription>
               </CardHeader>
@@ -55,7 +59,9 @@ export function ApiModulesOverview({ modules }: ApiModulesOverviewProps) {
                     </Badge>
                   ))}
                   {functions.length > 4 ? (
-                    <Badge variant="outline">+{functions.length - 4} more</Badge>
+                    <Badge variant="outline">
+                      +{functions.length - 4} more
+                    </Badge>
                   ) : null}
                 </div>
               </CardContent>

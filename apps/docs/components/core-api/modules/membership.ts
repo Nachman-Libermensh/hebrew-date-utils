@@ -31,7 +31,8 @@ export const membershipModule: ApiModuleDoc = {
     {
       name: "isSameHebrewDate",
       kind: "function",
-      signature: "isSameHebrewDate(a: DualDateInput, b: DualDateInput): boolean",
+      signature:
+        "isSameHebrewDate(a: DualDateInput, b: DualDateInput): boolean",
       description: "השוואת יום/חודש/שנה עברית.",
       usage: "isSameHebrewDate(new Date(2026, 8, 12), new Date(2026, 8, 12));",
       output: "boolean.",
@@ -39,7 +40,8 @@ export const membershipModule: ApiModuleDoc = {
     {
       name: "isSameGregorianDate",
       kind: "function",
-      signature: "isSameGregorianDate(a: DualDateInput, b: DualDateInput): boolean",
+      signature:
+        "isSameGregorianDate(a: DualDateInput, b: DualDateInput): boolean",
       description: "השוואת תאריך לועזי בלבד.",
       usage:
         "isSameGregorianDate(new Date(2026, 8, 12), { day: 19, month: 7, year: 5787 });",
@@ -56,7 +58,8 @@ export const membershipModule: ApiModuleDoc = {
     {
       name: "isWithinDualDateRange",
       kind: "function",
-      signature: "isWithinDualDateRange(input: DualDateInput, range: DualDateRange): boolean",
+      signature:
+        "isWithinDualDateRange(input: DualDateInput, range: DualDateRange): boolean",
       description: "בודק אם תאריך נמצא בטווח כולל start/end.",
       usage:
         "isWithinDualDateRange(new Date(2026, 8, 12), { start: toDualDate(new Date(2026, 8, 1)), end: toDualDate(new Date(2026, 8, 30)) });",

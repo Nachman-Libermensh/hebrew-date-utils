@@ -21,7 +21,8 @@ export const infoModule: ApiModuleDoc = {
     {
       name: "getGregorianMonthInfo",
       kind: "function",
-      signature: "getGregorianMonthInfo(year: number, month: number): GregorianMonthInfo",
+      signature:
+        "getGregorianMonthInfo(year: number, month: number): GregorianMonthInfo",
       description: "מידע מלא על חודש לועזי + החודשים העבריים הנכללים בו.",
       usage: "getGregorianMonthInfo(2026, 8);",
       output: "GregorianMonthInfo.",

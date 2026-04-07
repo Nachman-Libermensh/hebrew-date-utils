@@ -16,13 +16,15 @@ export const formattingModule: ApiModuleDoc = {
       signature:
         "{ locale?: string; showYear?: boolean; gematriya?: boolean; suppressNikud?: boolean }",
       description: "אפשרויות לרינדור תאריך עברי.",
-      usage: 'const options: HebrewFormatOptions = { locale: "he", gematriya: true };',
+      usage:
+        'const options: HebrewFormatOptions = { locale: "he", gematriya: true };',
       output: "טיפוס compile-time.",
     },
     {
       name: "formatGregorian",
       kind: "function",
-      signature: "formatGregorian(input: DualDateInput, pattern?: string): string",
+      signature:
+        "formatGregorian(input: DualDateInput, pattern?: string): string",
       description: "פורמט לועזי עם pattern של date-fns.",
       usage: 'formatGregorian(new Date(2026, 3, 5), "yyyy-MM-dd");',
       output: "מחרוזת לועזית.",
@@ -33,13 +35,15 @@ export const formattingModule: ApiModuleDoc = {
       signature:
         "formatHebrew(input: DualDateInput, options?: HebrewFormatOptions): string",
       description: "פורמט עברי (רגיל או גימטריה).",
-      usage: 'formatHebrew(new Date(2026, 3, 5), { locale: "he", gematriya: true });',
+      usage:
+        'formatHebrew(new Date(2026, 3, 5), { locale: "he", gematriya: true });',
       output: "מחרוזת עברית.",
     },
     {
       name: "formatDualDate",
       kind: "function",
-      signature: "formatDualDate(input: DualDateInput, gregorianPattern?: string): string",
+      signature:
+        "formatDualDate(input: DualDateInput, gregorianPattern?: string): string",
       description: "פורמט משולב לועזי | עברי.",
       usage: "formatDualDate(new Date(2026, 3, 5));",
       output: "מחרוזת בסגנון yyyy-MM-dd | Hebrew.",

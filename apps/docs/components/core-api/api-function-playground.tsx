@@ -30,8 +30,9 @@ export function ApiFunctionPlayground({
   kind,
 }: ApiFunctionPlaygroundProps) {
   const [primaryDate, setPrimaryDate] = React.useState(DEFAULT_PRIMARY_DATE);
-  const [secondaryDate, setSecondaryDate] =
-    React.useState(DEFAULT_SECONDARY_DATE);
+  const [secondaryDate, setSecondaryDate] = React.useState(
+    DEFAULT_SECONDARY_DATE,
+  );
   const [shiftAmount, setShiftAmount] = React.useState(1);
   const [locale, setLocale] = React.useState<"he" | "en">("he");
   const [inIsrael, setInIsrael] = React.useState(true);
@@ -154,7 +155,9 @@ export function ApiFunctionPlayground({
       </div>
 
       <div className="rounded-lg border border-foreground/10 bg-[#0d1a16] p-3 text-[#d0ffef]">
-        <span className="mb-2 block text-xs font-medium text-[#8bcfb8]">Output</span>
+        <span className="mb-2 block text-xs font-medium text-[#8bcfb8]">
+          Output
+        </span>
         <pre className="max-h-72 overflow-auto text-xs leading-relaxed">
           {formatPlaygroundOutput(runResult.output)}
         </pre>

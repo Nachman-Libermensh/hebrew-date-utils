@@ -54,7 +54,8 @@ export const monthUtilsModule: ApiModuleDoc = {
     {
       name: "getHebrewMonthName",
       kind: "function",
-      signature: "getHebrewMonthName(month: HebrewMonthInput, year: number): string",
+      signature:
+        "getHebrewMonthName(month: HebrewMonthInput, year: number): string",
       description: "שם חודש עברי לפי Hebcal transliteration.",
       usage: "getHebrewMonthName(7, 5787);",
       output: "string.",

@@ -25,13 +25,15 @@ export const rangesModule: ApiModuleDoc = {
       signature:
         "listDualDatesInRange(start: DualDateInput, end: DualDateInput): DualDate[]",
       description: "רשימת כל הימים בטווח כולל.",
-      usage: "listDualDatesInRange(new Date(2026, 3, 1), new Date(2026, 3, 3));",
+      usage:
+        "listDualDatesInRange(new Date(2026, 3, 1), new Date(2026, 3, 3));",
       output: "DualDate[] באורך מתאים.",
     },
     {
       name: "listDaysInGregorianMonth",
       kind: "function",
-      signature: "listDaysInGregorianMonth(year: number, month: number): DualDate[]",
+      signature:
+        "listDaysInGregorianMonth(year: number, month: number): DualDate[]",
       description: "כל ימי חודש לועזי נתון.",
       usage: "listDaysInGregorianMonth(2026, 3);",
       output: "DualDate[].",

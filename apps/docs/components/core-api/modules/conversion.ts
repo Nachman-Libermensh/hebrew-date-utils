@@ -15,7 +15,7 @@ export const conversionModule: ApiModuleDoc = {
       kind: "function",
       signature: "toHDate(input: DualDateInput): HDate",
       description: "ממיר כל קלט נתמך למופע HDate של Hebcal.",
-      usage: 'const hdate = toHDate(new Date(2026, 3, 5));',
+      usage: "const hdate = toHDate(new Date(2026, 3, 5));",
       output: "מופע HDate עם המתודות של Hebcal.",
     },
     {
@@ -23,7 +23,8 @@ export const conversionModule: ApiModuleDoc = {
       kind: "function",
       signature: "toGregorian(input: DualDateInput): Date",
       description: "ממיר כל קלט נתמך ל-Date לועזי מנורמל (תאריך בלבד).",
-      usage: 'const greg = toGregorian({ day: 1, month: "Tishrei", year: 5787 });',
+      usage:
+        'const greg = toGregorian({ day: 1, month: "Tishrei", year: 5787 });',
       output: "Date מקומי ללא זמן משמעותי (00:00 מקומי).",
     },
     {

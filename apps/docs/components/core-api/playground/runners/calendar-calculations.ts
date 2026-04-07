@@ -239,7 +239,14 @@ export const calendarCalculationRunners: RunnerMap = {
   getHebrewMonthRange: ({ primaryDate, shiftAmount }) => {
     const dual = toDualDate(primaryDate);
     const monthOffset = normalizedShift(shiftAmount);
-    const shifted = monthOffset === 0 ? dual : toDualDate(new Date(primaryDate.getTime() + monthOffset * 30 * 24 * 60 * 60 * 1000));
+    const shifted =
+      monthOffset === 0
+        ? dual
+        : toDualDate(
+            new Date(
+              primaryDate.getTime() + monthOffset * 30 * 24 * 60 * 60 * 1000,
+            ),
+          );
     return {
       invocation: `getHebrewMonthRange(${shifted.hebYear}, ${shifted.hebMonth})`,
       output: getHebrewMonthRange(shifted.hebYear, shifted.hebMonth),
