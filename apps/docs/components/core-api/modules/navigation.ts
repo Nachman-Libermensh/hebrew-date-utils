@@ -1,0 +1,87 @@
+import type { ApiModuleDoc } from "../catalog-types";
+
+export const navigationModule: ApiModuleDoc = {
+  slug: "navigation",
+  title: "navigation.ts",
+  sourcePath: "packages/hebrew-date-utils/src/navigation.ts",
+  summary: "הזזות קדימה/אחורה בימים/חודשים/שנים לשני הלוחות.",
+  notes: [
+    "פונקציות addGregorian* מבוססות date-fns.",
+    "פונקציות addHebrew* מבוססות HDate.add.",
+  ],
+  exports: [
+    {
+      name: "addGregorianDays",
+      kind: "function",
+      signature: "addGregorianDays(input: DualDateInput, amount: number): DualDate",
+      description: "הזזה לועזית בימים.",
+      usage: "addGregorianDays(new Date(2026, 3, 5), 10);",
+      output: "DualDate.",
+    },
+    {
+      name: "addGregorianMonths",
+      kind: "function",
+      signature: "addGregorianMonths(input: DualDateInput, amount: number): DualDate",
+      description: "הזזה לועזית בחודשים.",
+      usage: "addGregorianMonths(new Date(2026, 3, 5), 2);",
+      output: "DualDate.",
+    },
+    {
+      name: "addGregorianYears",
+      kind: "function",
+      signature: "addGregorianYears(input: DualDateInput, amount: number): DualDate",
+      description: "הזזה לועזית בשנים.",
+      usage: "addGregorianYears(new Date(2026, 3, 5), 1);",
+      output: "DualDate.",
+    },
+    {
+      name: "addHebrewDays",
+      kind: "function",
+      signature: "addHebrewDays(input: DualDateInput, amount: number): DualDate",
+      description: "הזזה עברית בימים.",
+      usage: "addHebrewDays(new Date(2026, 3, 5), 10);",
+      output: "DualDate.",
+    },
+    {
+      name: "addHebrewMonths",
+      kind: "function",
+      signature: "addHebrewMonths(input: DualDateInput, amount: number): DualDate",
+      description: "הזזה עברית בחודשים.",
+      usage: "addHebrewMonths(new Date(2026, 3, 5), 2);",
+      output: "DualDate.",
+    },
+    {
+      name: "addHebrewYears",
+      kind: "function",
+      signature: "addHebrewYears(input: DualDateInput, amount: number): DualDate",
+      description: "הזזה עברית בשנים.",
+      usage: "addHebrewYears(new Date(2026, 3, 5), 1);",
+      output: "DualDate.",
+    },
+    {
+      name: "nextHebrewMonth",
+      kind: "function",
+      signature: "nextHebrewMonth(input: DualDateInput): DualDate",
+      description: "היום הראשון של החודש העברי הבא.",
+      usage: "nextHebrewMonth(new Date(2026, 3, 5));",
+      output: "DualDate.",
+    },
+    {
+      name: "previousHebrewMonth",
+      kind: "function",
+      signature: "previousHebrewMonth(input: DualDateInput): DualDate",
+      description: "היום הראשון של החודש העברי הקודם.",
+      usage: "previousHebrewMonth(new Date(2026, 3, 5));",
+      output: "DualDate.",
+    },
+    {
+      name: "shiftHebrewMonth",
+      kind: "function",
+      signature:
+        "shiftHebrewMonth(month: number, year: number, offset: number): { month: number; year: number; name: string }",
+      description: "הזזת זוג month/year עברי בהיסט נתון.",
+      usage: "shiftHebrewMonth(7, 5787, 1);",
+      output: "אובייקט month/year/name.",
+    },
+  ],
+};

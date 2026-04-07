@@ -3,7 +3,6 @@ import Link from "next/link";
 import {
   Noto_Sans_Hebrew,
   Space_Grotesk,
-  Geist,
   Inter,
 } from "next/font/google";
 import "./globals.css";
