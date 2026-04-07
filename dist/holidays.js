@@ -33,16 +33,25 @@ function buildCalendarOptions(options) {
     }
     return base;
 }
+/**
+ * Returns holiday events that occur on a specific date.
+ */
 export function getHolidaysOn(date, options = {}) {
     const locale = options.locale ?? "en";
     const events = HebrewCalendar.getHolidaysOnDate(toHDate(date), options.il) ?? [];
     return events.map((event) => toHolidayInfo(event, locale));
 }
+/**
+ * Returns holiday events for an entire Hebrew year.
+ */
 export function getHolidaysForHebrewYear(year, options = {}) {
     const locale = options.locale ?? "en";
     const events = HebrewCalendar.getHolidaysForYearArray(year, Boolean(options.il));
     return events.map((event) => toHolidayInfo(event, locale));
 }
+/**
+ * Returns holiday events within an inclusive Gregorian date interval.
+ */
 export function getHolidaysBetween(start, end, options = {}) {
     const locale = options.locale ?? "en";
     const calendarOptions = buildCalendarOptions(options);
@@ -53,6 +62,9 @@ export function getHolidaysBetween(start, end, options = {}) {
     });
     return events.map((event) => toHolidayInfo(event, locale));
 }
+/**
+ * Returns true when at least one holiday exists on the given date.
+ */
 export function isHoliday(date, options = {}) {
     return getHolidaysOn(date, options).length > 0;
 }

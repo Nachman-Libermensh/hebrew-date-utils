@@ -47,6 +47,9 @@ function buildCalendarOptions(options: HolidayQueryOptions): CalOptions {
   return base;
 }
 
+/**
+ * Returns holiday events that occur on a specific date.
+ */
 export function getHolidaysOn(
   date: DualDateInput,
   options: HolidayQueryOptions = {},
@@ -57,6 +60,9 @@ export function getHolidaysOn(
   return events.map((event: Event) => toHolidayInfo(event, locale));
 }
 
+/**
+ * Returns holiday events for an entire Hebrew year.
+ */
 export function getHolidaysForHebrewYear(
   year: number,
   options: HolidayQueryOptions = {},
@@ -69,6 +75,9 @@ export function getHolidaysForHebrewYear(
   return events.map((event: Event) => toHolidayInfo(event, locale));
 }
 
+/**
+ * Returns holiday events within an inclusive Gregorian date interval.
+ */
 export function getHolidaysBetween(
   start: DualDateInput,
   end: DualDateInput,
@@ -86,6 +95,9 @@ export function getHolidaysBetween(
   return events.map((event: Event) => toHolidayInfo(event, locale));
 }
 
+/**
+ * Returns true when at least one holiday exists on the given date.
+ */
 export function isHoliday(
   date: DualDateInput,
   options: HolidayQueryOptions = {},

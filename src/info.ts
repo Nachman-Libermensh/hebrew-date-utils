@@ -17,6 +17,9 @@ import type {
   HebrewMonthInput,
 } from "./types.js";
 
+/**
+ * Returns Hebrew month metadata and boundaries.
+ */
 export function getHebrewMonthInfo(
   year: number,
   month: HebrewMonthInput,
@@ -35,6 +38,9 @@ export function getHebrewMonthInfo(
   };
 }
 
+/**
+ * Returns Gregorian month metadata and included Hebrew months.
+ */
 export function getGregorianMonthInfo(
   year: number,
   month: number,

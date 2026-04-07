@@ -2,6 +2,8 @@
 
 This document summarizes the public API exported by hebrew-date-utils.
 
+For usage examples and expected outputs for every function, see README.md.
+
 ## Core Models
 
 - DualDate: normalized Gregorian and Hebrew representations of the same date
@@ -25,6 +27,7 @@ This document summarizes the public API exported by hebrew-date-utils.
 - normalizeHebrewMonth(month)
 - isHebrewLeapYear(year)
 - getMonthsInHebrewYear(year)
+- getDaysInGregorianMonth(year, month)
 - getDaysInHebrewMonth(year, month)
 - getHebrewMonthName(month, year)
 - getHebrewMonthNameHe(month, year)
@@ -68,6 +71,7 @@ This document summarizes the public API exported by hebrew-date-utils.
 
 - addGregorianDays(input, amount)
 - addGregorianMonths(input, amount)
+- addGregorianYears(input, amount)
 - addHebrewDays(input, amount)
 - addHebrewMonths(input, amount)
 - addHebrewYears(input, amount)
@@ -105,6 +109,10 @@ Note:
 ## Module: arithmetic
 
 - differenceInDualDays(left, right)
+- differenceInDualMonths(left, right)
+- differenceInDualYears(left, right)
+- differenceInHebrewMonths(left, right)
+- differenceInHebrewYears(left, right)
 - getBirthdayInHebrewYear(originalDate, targetHebrewYear)
 - getYahrzeitInHebrewYear(dateOfDeath, targetHebrewYear)
 - getGregorianAge(birthDate, atDate?)

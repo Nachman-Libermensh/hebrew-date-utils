@@ -11,6 +11,9 @@ import type {
   HebrewMonthInput,
 } from "./types.js";
 
+/**
+ * Returns true when date belongs to the specified Hebrew month and year.
+ */
 export function isDateInHebrewMonth(
   input: DualDateInput,
   month: HebrewMonthInput,
@@ -22,6 +25,9 @@ export function isDateInHebrewMonth(
   return dual.hebYear === year && dual.hebMonth === numericMonth;
 }
 
+/**
+ * Returns true when date belongs to the specified Gregorian month and year.
+ */
 export function isDateInGregorianMonth(
   input: DualDateInput,
   month: number,
@@ -31,6 +37,9 @@ export function isDateInGregorianMonth(
   return greg.getMonth() === month && greg.getFullYear() === year;
 }
 
+/**
+ * Returns true when two inputs share the same Hebrew day, month, and year.
+ */
 export function isSameHebrewDate(a: DualDateInput, b: DualDateInput): boolean {
   const da = toDualDate(a);
   const db = toDualDate(b);
@@ -42,6 +51,9 @@ export function isSameHebrewDate(a: DualDateInput, b: DualDateInput): boolean {
   );
 }
 
+/**
+ * Returns true when two inputs are the same Gregorian calendar date.
+ */
 export function isSameGregorianDate(
   a: DualDateInput,
   b: DualDateInput,
@@ -49,10 +61,16 @@ export function isSameGregorianDate(
   return isSameDay(toGregorian(a), toGregorian(b));
 }
 
+/**
+ * Compares two inputs by Gregorian day difference.
+ */
 export function compareDualDates(a: DualDateInput, b: DualDateInput): number {
   return differenceInCalendarDays(toGregorian(a), toGregorian(b));
 }
 
+/**
+ * Returns true when input falls within the inclusive range.
+ */
 export function isWithinDualDateRange(
   input: DualDateInput,
   range: DualDateRange,

@@ -3,6 +3,9 @@ import { HDate } from "./hebcal-compat.js";
 import { getGregorianMonthBoundaries, getHebrewMonthBoundaries, } from "./boundaries.js";
 import { toDualDate, toGregorian } from "./conversion.js";
 import { getDaysInHebrewMonth, normalizeHebrewMonth } from "./month-utils.js";
+/**
+ * Builds an ordered inclusive date range from two inputs.
+ */
 export function makeDualDateRange(start, end) {
     const startDate = toGregorian(start);
     const endDate = toGregorian(end);
@@ -17,6 +20,9 @@ export function makeDualDateRange(start, end) {
         end: toDualDate(endDate),
     };
 }
+/**
+ * Lists every day in an inclusive range as DualDate entries.
+ */
 export function listDualDatesInRange(start, end) {
     const range = makeDualDateRange(start, end);
     return eachDayOfInterval({
@@ -24,10 +30,16 @@ export function listDualDatesInRange(start, end) {
         end: range.end.greg,
     }).map((date) => toDualDate(date));
 }
+/**
+ * Lists all days in a Gregorian month.
+ */
 export function listDaysInGregorianMonth(year, month) {
     const bounds = getGregorianMonthBoundaries(year, month);
     return listDualDatesInRange(bounds.start, bounds.end);
 }
+/**
+ * Lists all days in a Hebrew month.
+ */
 export function listDaysInHebrewMonth(year, month) {
     const normalizedMonth = normalizeHebrewMonth(month);
     const count = getDaysInHebrewMonth(year, normalizedMonth);
@@ -38,6 +50,9 @@ export function listDaysInHebrewMonth(year, month) {
     }
     return result;
 }
+/**
+ * Splits an inclusive range into contiguous Hebrew-month segments.
+ */
 export function splitRangeByHebrewMonth(start, end) {
     const days = listDualDatesInRange(start, end);
     if (days.length === 0) {
@@ -77,6 +92,9 @@ export function splitRangeByHebrewMonth(start, end) {
     });
     return segments;
 }
+/**
+ * Splits an inclusive range into contiguous Gregorian-month ranges.
+ */
 export function splitRangeByGregorianMonth(start, end) {
     const days = listDualDatesInRange(start, end);
     if (days.length === 0) {
@@ -97,6 +115,9 @@ export function splitRangeByGregorianMonth(start, end) {
     ranges.push({ start: currentStart, end: previous });
     return ranges;
 }
+/**
+ * Alias for Hebrew month boundaries.
+ */
 export function getHebrewMonthRange(year, month) {
     return getHebrewMonthBoundaries(year, month);
 }

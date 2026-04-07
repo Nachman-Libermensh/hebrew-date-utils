@@ -17,6 +17,9 @@ function isHebrewDateParts(value) {
 function normalizeLocalDate(date) {
     return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
+/**
+ * Converts any supported input into a Hebcal HDate.
+ */
 export function toHDate(input) {
     if (isDualDate(input)) {
         return new HDate(input.heb);
@@ -32,6 +35,9 @@ export function toHDate(input) {
     }
     return new HDate();
 }
+/**
+ * Converts any supported input into a normalized Gregorian Date.
+ */
 export function toGregorian(input) {
     if (isDualDate(input)) {
         return normalizeLocalDate(input.greg);
@@ -41,6 +47,9 @@ export function toGregorian(input) {
     }
     return normalizeLocalDate(toHDate(input).greg());
 }
+/**
+ * Creates a DualDate object that includes Hebrew and Gregorian views.
+ */
 export function toDualDate(input) {
     const heb = toHDate(input);
     const greg = normalizeLocalDate(heb.greg());
@@ -55,12 +64,21 @@ export function toDualDate(input) {
         hebDisplay: heb.renderGematriya(true),
     };
 }
+/**
+ * Alias for creating a DualDate from a Gregorian Date.
+ */
 export function fromGregorianDate(date) {
     return toDualDate(date);
 }
+/**
+ * Creates a DualDate from Hebrew date parts.
+ */
 export function fromHebrewDate(day, month, year) {
     return toDualDate({ day, month, year });
 }
+/**
+ * Returns today's date as a DualDate (or for a supplied reference date).
+ */
 export function todayDualDate(referenceDate = new Date()) {
     return toDualDate(referenceDate);
 }

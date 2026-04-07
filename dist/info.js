@@ -3,6 +3,9 @@ import { GREGORIAN_MONTH_NAMES_EN } from "./constants.js";
 import { getGregorianMonthBoundaries, getHebrewMonthBoundaries, } from "./boundaries.js";
 import { listDualDatesInRange } from "./ranges.js";
 import { getDaysInHebrewMonth, getHebrewMonthName, getHebrewMonthNameHe, isHebrewLeapYear, } from "./month-utils.js";
+/**
+ * Returns Hebrew month metadata and boundaries.
+ */
 export function getHebrewMonthInfo(year, month) {
     const bounds = getHebrewMonthBoundaries(year, month);
     return {
@@ -16,6 +19,9 @@ export function getHebrewMonthInfo(year, month) {
         lastDay: bounds.end,
     };
 }
+/**
+ * Returns Gregorian month metadata and included Hebrew months.
+ */
 export function getGregorianMonthInfo(year, month) {
     const bounds = getGregorianMonthBoundaries(year, month);
     const days = listDualDatesInRange(bounds.start, bounds.end);

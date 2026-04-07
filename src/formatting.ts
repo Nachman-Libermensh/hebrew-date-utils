@@ -3,6 +3,9 @@ import { DEFAULT_GREGORIAN_LOCALE } from "./constants.js";
 import { toDualDate, toGregorian, toHDate } from "./conversion.js";
 import type { DualDateInput } from "./types.js";
 
+/**
+ * Options for Hebrew date rendering.
+ */
 export interface HebrewFormatOptions {
   locale?: string;
   showYear?: boolean;
@@ -10,6 +13,9 @@ export interface HebrewFormatOptions {
   suppressNikud?: boolean;
 }
 
+/**
+ * Formats input using a date-fns Gregorian format pattern.
+ */
 export function formatGregorian(
   input: DualDateInput,
   pattern = "yyyy-MM-dd",
@@ -17,6 +23,9 @@ export function formatGregorian(
   return formatGregorianDateFn(toGregorian(input), pattern);
 }
 
+/**
+ * Formats input as a Hebrew date string.
+ */
 export function formatHebrew(
   input: DualDateInput,
   options: HebrewFormatOptions = {},
@@ -37,6 +46,9 @@ export function formatHebrew(
   return hebDate.render(locale, showYear);
 }
 
+/**
+ * Formats both Gregorian and Hebrew values in a single string.
+ */
 export function formatDualDate(
   input: DualDateInput,
   gregorianPattern = "yyyy-MM-dd",
@@ -45,6 +57,9 @@ export function formatDualDate(
   return `${formatGregorianDateFn(dual.greg, gregorianPattern)} | ${dual.hebString}`;
 }
 
+/**
+ * Returns localized weekday name for the Gregorian date.
+ */
 export function getWeekdayName(
   input: DualDateInput,
   locale = DEFAULT_GREGORIAN_LOCALE,
@@ -55,6 +70,9 @@ export function getWeekdayName(
   );
 }
 
+/**
+ * Formats input as ISO-like local date string (yyyy-MM-dd).
+ */
 export function toIsoDate(input: DualDateInput): string {
   return formatGregorian(input, "yyyy-MM-dd");
 }

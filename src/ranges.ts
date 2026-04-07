@@ -14,6 +14,9 @@ import type {
   MonthSegment,
 } from "./types.js";
 
+/**
+ * Builds an ordered inclusive date range from two inputs.
+ */
 export function makeDualDateRange(
   start: DualDateInput,
   end: DualDateInput,
@@ -34,6 +37,9 @@ export function makeDualDateRange(
   };
 }
 
+/**
+ * Lists every day in an inclusive range as DualDate entries.
+ */
 export function listDualDatesInRange(
   start: DualDateInput,
   end: DualDateInput,
@@ -45,6 +51,9 @@ export function listDualDatesInRange(
   }).map((date) => toDualDate(date));
 }
 
+/**
+ * Lists all days in a Gregorian month.
+ */
 export function listDaysInGregorianMonth(
   year: number,
   month: number,
@@ -53,6 +62,9 @@ export function listDaysInGregorianMonth(
   return listDualDatesInRange(bounds.start, bounds.end);
 }
 
+/**
+ * Lists all days in a Hebrew month.
+ */
 export function listDaysInHebrewMonth(
   year: number,
   month: HebrewMonthInput,
@@ -69,6 +81,9 @@ export function listDaysInHebrewMonth(
   return result;
 }
 
+/**
+ * Splits an inclusive range into contiguous Hebrew-month segments.
+ */
 export function splitRangeByHebrewMonth(
   start: DualDateInput,
   end: DualDateInput,
@@ -121,6 +136,9 @@ export function splitRangeByHebrewMonth(
   return segments;
 }
 
+/**
+ * Splits an inclusive range into contiguous Gregorian-month ranges.
+ */
 export function splitRangeByGregorianMonth(
   start: DualDateInput,
   end: DualDateInput,
@@ -152,6 +170,9 @@ export function splitRangeByGregorianMonth(
   return ranges;
 }
 
+/**
+ * Alias for Hebrew month boundaries.
+ */
 export function getHebrewMonthRange(
   year: number,
   month: HebrewMonthInput,
