@@ -3,10 +3,84 @@ export const metadata = {
 };
 
 import { ReactPickerDemo } from "@/components/react-picker-demo";
+import { CodeBlock } from "@/components/code-block";
+
+export const basicUsageCode = String.raw`import { useState } from "react";
+import { HebrewDatePicker } from "hebrew-date-picker-react";
+
+export function Demo() {
+  const [value, setValue] = useState<Date | undefined>();
+
+return (
+<HebrewDatePicker
+      value={value}
+      onChange={setValue}
+      placeholder="Select a date"
+    />
+);
+}`;
+
+export const customizationTabs = [
+  {
+    name: "modifiers",
+    language: "tsx",
+    code: String.raw`<HebrewDatePicker
+  modifiers={{
+    busy: (date) => date.getDay() === 5,
+  }}
+  modifiersClassNames={{
+    busy: "bg-amber-200 text-amber-900",
+  }}
+/>`,
+    highlightLines: [2, 3, 5, 6],
+  },
+  {
+    name: "formatters",
+    language: "tsx",
+    code: String.raw`const HEB_DAY_LETTERS = ["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"];
+
+<HebrewDatePicker
+  locale="he-IL"
+  formatters={{
+    formatWeekday: (weekday) => HEB_DAY_LETTERS[weekday] ?? "",
+  }}
+/>`,
+    highlightLines: [1, 5],
+  },
+  {
+    name: "components",
+    language: "tsx",
+    code: String.raw`<HebrewDatePicker
+  components={{
+    Caption: ({ captionLabel, onPreviousMonth, onNextMonth }) => (
+      <div className="my-caption">
+        <button onClick={onPreviousMonth}>◀</button>
+        <strong>{captionLabel}</strong>
+        <button onClick={onNextMonth}>▶</button>
+      </div>
+    ),
+  }}
+/>`,
+    highlightLines: [2, 3, 9],
+  },
+];
 
 <div className="docs-content">
 
 # hebrew-date-picker-react
+
+This package is an optional React UI layer.
+
+The main package in this repository is `hebrew-date-utils` (Core).
+
+Use `hebrew-date-picker-react` only when you need a ready-made picker interface.
+
+## Positioning in the monorepo
+
+- `hebrew-date-utils` - core date logic, environment-agnostic
+- `hebrew-date-picker-react` - React-specific UI wrapper on top of the core
+
+## What the picker gives you
 
 `hebrew-date-picker-react` is a customizable picker component built with:
 
@@ -24,31 +98,27 @@ The component exposes customization props inspired by react-day-picker style ext
 
 ## Basic Example
 
-```tsx
-import { HebrewDatePicker } from "hebrew-date-picker-react";
-
-export function Demo() {
-  return (
-    <HebrewDatePicker
-      placeholder="Select a date"
-      onChange={(value) => console.log(value)}
-    />
-  );
-}
-```
-
-## Styled State Example
-
-```tsx
-<HebrewDatePicker
-  modifiers={{
-    busy: (date) => date.getDay() === 5,
-  }}
-  modifiersClassNames={{
-    busy: "bg-amber-200 text-amber-900",
-  }}
+<CodeBlock
+  language="tsx"
+  filename="basic-picker.tsx"
+  code={basicUsageCode}
+  highlightLines={[2, 5, 9, 10]}
 />
-```
+
+## Styling and behavior patterns
+
+<CodeBlock
+  language="tsx"
+  filename="picker-customization.tsx"
+  tabs={customizationTabs}
+/>
+
+## Interactive Single / Range Integration
+
+The live block below demonstrates two integration styles:
+
+- Single date selection with one picker state
+- Date range selection by composing two pickers (`from` / `to`) with visual emphasis for added range props and guards
 
 ## Live Demo
 

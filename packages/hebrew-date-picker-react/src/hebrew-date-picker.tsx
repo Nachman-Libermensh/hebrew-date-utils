@@ -36,6 +36,24 @@ interface CalendarCell {
   outside: boolean;
 }
 
+const HEBREW_WEEKDAY_LETTERS = ["א׳", "ב׳", "ג׳", "ד׳", "ה׳", "ו׳", "ש׳"];
+
+function isHebrewLocale(locale: string): boolean {
+  const normalized = locale.toLowerCase();
+  return normalized === "he" || normalized.startsWith("he-");
+}
+
+function getDefaultWeekdayLabel(weekday: number, locale: string): string {
+  if (isHebrewLocale(locale)) {
+    return HEBREW_WEEKDAY_LETTERS[weekday] ?? "";
+  }
+
+  const date = new Date(2024, 0, 7 + weekday);
+  return new Intl.DateTimeFormat(locale, {
+    weekday: "short",
+  }).format(date);
+}
+
 function normalizeDate(date: Date): Date {
   return new Date(date.getFullYear(), date.getMonth(), date.getDate());
 }
@@ -424,12 +442,9 @@ export function HebrewDatePicker({
 
                         <div className={mergedClassNames.weekdaysRow}>
                           {weekdayOrder.map((weekday) => {
-                            const date = new Date(2024, 0, 7 + weekday);
                             const label = formatters?.formatWeekday
                               ? formatters.formatWeekday(weekday, locale)
-                              : new Intl.DateTimeFormat(locale, {
-                                  weekday: "short",
-                                }).format(date);
+                              : getDefaultWeekdayLabel(weekday, locale);
 
                             return (
                               <div

@@ -4,9 +4,18 @@ export const metadata = {
 
 <div className="docs-content">
 
-# hebrew-date-utils API
+# hebrew-date-utils (Core API)
 
-The core package is designed for date-only workflows and uses:
+`hebrew-date-utils` is the primary library in this repository.
+
+It is designed for date-only Hebrew/Gregorian workflows in any Node.js project:
+
+- Backend services
+- Workers and schedulers
+- CLI tools
+- Serverless/API routes
+
+Under the hood it uses:
 
 - `@hebcal/core` for Hebrew calendar rules and conversions
 - `date-fns` for Gregorian arithmetic and formatting
@@ -16,16 +25,18 @@ The core package is designed for date-only workflows and uses:
 ```ts
 import {
   toDualDate,
+  toGregorian,
+  toHDate,
   listDaysInHebrewMonth,
   getGregorianMonthBoundaries,
   differenceInDualDays,
-  differenceInHebrewMonths,
+  differenceInDualMonths,
   addGregorianYears,
   getHolidaysOn,
 } from "hebrew-date-utils";
 ```
 
-## Highlights
+## Module Highlights
 
 ### Conversions
 
@@ -39,10 +50,39 @@ Use `getGregorianMonthBoundaries`, `getHebrewMonthBoundaries`, and `listDualDate
 
 Use `differenceInDualDays`, `differenceInDualMonths`, `differenceInDualYears`, and Hebrew-specific month/year differences.
 
+### Navigation
+
+Use `addGregorianDays`, `addGregorianMonths`, `addHebrewMonths`, and related helpers to move in either calendar.
+
 ### Holidays
 
 Use `getHolidaysOn`, `getHolidaysBetween`, and `getHolidaysForHebrewYear`.
 
-For full module coverage and usage snippets, see the package README in `packages/hebrew-date-utils/README.md`.
+## End-to-end example
+
+```ts
+import {
+  toDualDate,
+  listDualDatesInRange,
+  getHolidaysBetween,
+  splitRangeByHebrewMonth,
+} from "hebrew-date-utils";
+
+const start = new Date(2026, 8, 1);
+const end = new Date(2026, 9, 15);
+
+const days = listDualDatesInRange(start, end);
+const segments = splitRangeByHebrewMonth(start, end);
+const holidays = getHolidaysBetween(start, end, { locale: "he", il: true });
+
+console.log({
+  first: toDualDate(days[0]!.greg),
+  totalDays: days.length,
+  monthSegments: segments,
+  holidays,
+});
+```
+
+For full module coverage and usage snippets, see `packages/hebrew-date-utils/README.md`.
 
 </div>

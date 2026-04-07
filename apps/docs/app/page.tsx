@@ -2,22 +2,22 @@ import Link from "next/link";
 
 const featureCards = [
   {
-    title: "Core Library",
-    text: "Date-only Hebrew/Gregorian helpers powered by @hebcal/core and date-fns.",
+    title: "hebrew-date-utils (Core)",
+    text: "Framework-agnostic Node.js library for Hebrew/Gregorian conversions, ranges, arithmetic, boundaries, and holidays.",
     href: "/docs/api",
-    cta: "Explore API",
+    cta: "Explore Core API",
   },
   {
-    title: "React Date Picker",
-    text: "Customizable picker package with a react-day-picker-style extension API.",
-    href: "/docs/react-picker",
-    cta: "View Components",
-  },
-  {
-    title: "Quick Setup",
-    text: "Monorepo workspace with static docs export and GitHub Pages deployment.",
+    title: "Start in Any Node Project",
+    text: "Install only the core package and use it in scripts, APIs, services, queues, or serverless functions.",
     href: "/docs/getting-started",
-    cta: "Start Here",
+    cta: "Quick Setup",
+  },
+  {
+    title: "React Picker Add-on",
+    text: "Optional UI layer built on top of the core package, with extensible classNames, modifiers, formatters, and components.",
+    href: "/docs/react-picker",
+    cta: "View React Add-on",
   },
 ];
 
@@ -25,18 +25,20 @@ export default function HomePage() {
   return (
     <section className="hero-wrap">
       <div className="hero-panel">
-        <p className="eyebrow">Official Documentation</p>
-        <h1>Hebrew Calendar Utilities for Serious Product Work</h1>
+        <p className="eyebrow">Core-First Documentation</p>
+        <h1>Build on hebrew-date-utils Core, Then Add UI If You Need It</h1>
         <p>
-          Build reliable date workflows without touching zmanim: conversions,
-          ranges, boundaries, holidays, and a customizable React date picker.
+          The primary package in this monorepo is{" "}
+          <strong>hebrew-date-utils</strong>. It is environment-agnostic and
+          fits any Node.js workflow. The React picker is documented as an
+          optional integration layer.
         </p>
         <div className="hero-actions">
-          <Link href="/docs/getting-started" className="primary-action">
-            Read Getting Started
+          <Link href="/docs/api" className="primary-action">
+            Read Core API
           </Link>
-          <Link href="/docs/api" className="secondary-action">
-            Core API Reference
+          <Link href="/docs/getting-started" className="secondary-action">
+            Install in Node.js
           </Link>
         </div>
       </div>

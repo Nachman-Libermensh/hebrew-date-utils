@@ -16,14 +16,14 @@ const hebrewFont = Noto_Sans_Hebrew({
 export const metadata: Metadata = {
   title: "Hebrew Date Utils Docs",
   description:
-    "Official documentation for hebrew-date-utils and hebrew-date-picker-react",
+    "Core-first documentation for hebrew-date-utils with an optional React picker add-on",
 };
 
 const links = [
   { href: "/", label: "Home" },
+  { href: "/docs/api", label: "Core API (Main)" },
   { href: "/docs/getting-started", label: "Getting Started" },
-  { href: "/docs/api", label: "Core API" },
-  { href: "/docs/react-picker", label: "React Picker" },
+  { href: "/docs/react-picker", label: "React Picker (Optional)" },
 ];
 
 export default function RootLayout({
