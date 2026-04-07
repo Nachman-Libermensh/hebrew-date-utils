@@ -1,0 +1,57 @@
+export const metadata = {
+  title: "React Date Picker",
+};
+
+import { ReactPickerDemo } from "@/components/react-picker-demo";
+
+<div className="docs-content">
+
+# hebrew-date-picker-react
+
+`hebrew-date-picker-react` is a customizable picker component built with:
+
+- `hebrew-date-utils` for Hebrew/Gregorian date data
+- shadcn-style UI primitives (`Button`, `Popover`, `Card`, `Select`)
+
+## Customization Model
+
+The component exposes customization props inspired by react-day-picker style extension points:
+
+- `classNames` for structural class overrides
+- `modifiers` and `modifiersClassNames` for semantic day states
+- `formatters` for weekday, caption, and day label output
+- `components` for replacing internal rendering blocks
+
+## Basic Example
+
+```tsx
+import { HebrewDatePicker } from "hebrew-date-picker-react";
+
+export function Demo() {
+  return (
+    <HebrewDatePicker
+      placeholder="Select a date"
+      onChange={(value) => console.log(value)}
+    />
+  );
+}
+```
+
+## Styled State Example
+
+```tsx
+<HebrewDatePicker
+  modifiers={{
+    busy: (date) => date.getDay() === 5,
+  }}
+  modifiersClassNames={{
+    busy: "bg-amber-200 text-amber-900",
+  }}
+/>
+```
+
+## Live Demo
+
+<ReactPickerDemo />
+
+</div>

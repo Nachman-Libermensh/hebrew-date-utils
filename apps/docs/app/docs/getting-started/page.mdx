@@ -1,0 +1,49 @@
+export const metadata = {
+  title: "Getting Started",
+};
+
+<div className="docs-content">
+
+# Getting Started
+
+This project is organized as a monorepo with three workspaces:
+
+- `packages/hebrew-date-utils`
+- `packages/hebrew-date-picker-react`
+- `apps/docs`
+
+## Install Dependencies
+
+```bash
+pnpm install
+```
+
+## Build All Packages
+
+```bash
+pnpm build
+```
+
+## Run Documentation Locally
+
+```bash
+pnpm dev:docs
+```
+
+## Publish Packages
+
+Publish the core library from `packages/hebrew-date-utils` and the picker package from `packages/hebrew-date-picker-react`.
+
+## GitHub Pages Deployment
+
+Documentation is built as a static export using Next.js:
+
+- `output: "export"`
+- `trailingSlash: true`
+- `images.unoptimized: true`
+
+The workflow in `.github/workflows/docs-pages.yml` builds `apps/docs` and deploys the `out` directory to GitHub Pages.
+
+Repository package manager: `pnpm` (workspace config in `pnpm-workspace.yaml`).
+
+</div>

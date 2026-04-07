@@ -1,0 +1,48 @@
+export const metadata = {
+  title: "Core API",
+};
+
+<div className="docs-content">
+
+# hebrew-date-utils API
+
+The core package is designed for date-only workflows and uses:
+
+- `@hebcal/core` for Hebrew calendar rules and conversions
+- `date-fns` for Gregorian arithmetic and formatting
+
+## Common Imports
+
+```ts
+import {
+  toDualDate,
+  listDaysInHebrewMonth,
+  getGregorianMonthBoundaries,
+  differenceInDualDays,
+  differenceInHebrewMonths,
+  addGregorianYears,
+  getHolidaysOn,
+} from "hebrew-date-utils";
+```
+
+## Highlights
+
+### Conversions
+
+Use `toDualDate`, `toHDate`, and `toGregorian` to normalize mixed inputs.
+
+### Boundaries and Ranges
+
+Use `getGregorianMonthBoundaries`, `getHebrewMonthBoundaries`, and `listDualDatesInRange`.
+
+### Arithmetic
+
+Use `differenceInDualDays`, `differenceInDualMonths`, `differenceInDualYears`, and Hebrew-specific month/year differences.
+
+### Holidays
+
+Use `getHolidaysOn`, `getHolidaysBetween`, and `getHolidaysForHebrewYear`.
+
+For full module coverage and usage snippets, see the package README in `packages/hebrew-date-utils/README.md`.
+
+</div>

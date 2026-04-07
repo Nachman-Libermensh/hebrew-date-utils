@@ -1,0 +1,59 @@
+import type { Metadata } from "next";
+import Link from "next/link";
+import { Noto_Sans_Hebrew, Space_Grotesk } from "next/font/google";
+import "./globals.css";
+
+const displayFont = Space_Grotesk({
+  subsets: ["latin"],
+  variable: "--font-display",
+});
+
+const hebrewFont = Noto_Sans_Hebrew({
+  subsets: ["hebrew", "latin"],
+  variable: "--font-hebrew",
+});
+
+export const metadata: Metadata = {
+  title: "Hebrew Date Utils Docs",
+  description:
+    "Official documentation for hebrew-date-utils and hebrew-date-picker-react",
+};
+
+const links = [
+  { href: "/", label: "Home" },
+  { href: "/docs/getting-started", label: "Getting Started" },
+  { href: "/docs/api", label: "Core API" },
+  { href: "/docs/react-picker", label: "React Picker" },
+];
+
+export default function RootLayout({
+  children,
+}: Readonly<{ children: React.ReactNode }>) {
+  return (
+    <html
+      lang="en"
+      className={`${displayFont.variable} ${hebrewFont.variable}`}
+    >
+      <body>
+        <div className="site-shell">
+          <header className="site-header">
+            <Link href="/" className="brand">
+              hebrew-date-utils
+            </Link>
+            <nav className="top-nav" aria-label="Main navigation">
+              {links.map((link) => (
+                <Link key={link.href} href={link.href} className="nav-link">
+                  {link.label}
+                </Link>
+              ))}
+            </nav>
+          </header>
+          <main className="page-content">{children}</main>
+          <footer className="site-footer">
+            <p>Built for date-only Hebrew and Gregorian workflows.</p>
+          </footer>
+        </div>
+      </body>
+    </html>
+  );
+}
