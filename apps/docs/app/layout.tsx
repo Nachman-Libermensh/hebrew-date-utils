@@ -36,7 +36,7 @@ export default function RootLayout({
 }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html
-      lang="en"
+      lang="he-IL"
       className={cn(
         displayFont.variable,
         hebrewFont.variable,
@@ -45,7 +45,7 @@ export default function RootLayout({
       )}
     >
       <body>
-        <DirectionProvider dir="ltr">
+        <DirectionProvider dir="rtl">
           <TooltipProvider>
             <div className="site-shell">
               <header className="site-header">
