@@ -1,10 +1,17 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Noto_Sans_Hebrew, Space_Grotesk, Geist, Inter } from "next/font/google";
+import {
+  Noto_Sans_Hebrew,
+  Space_Grotesk,
+  Geist,
+  Inter,
+} from "next/font/google";
 import "./globals.css";
 import { cn } from "@/lib/utils";
+import { TooltipProvider } from "@/components/ui/tooltip";
+import { DirectionProvider } from "@/components/ui/direction";
 
-const inter = Inter({subsets:['latin'],variable:'--font-sans'});
+const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 
 const displayFont = Space_Grotesk({
   subsets: ["latin"],
@@ -35,27 +42,36 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={cn(displayFont.variable, hebrewFont.variable, "font-sans", inter.variable)}
+      className={cn(
+        displayFont.variable,
+        hebrewFont.variable,
+        "font-sans",
+        inter.variable,
+      )}
     >
       <body>
-        <div className="site-shell">
-          <header className="site-header">
-            <Link href="/" className="brand">
-              hebrew-date-utils
-            </Link>
-            <nav className="top-nav" aria-label="Main navigation">
-              {links.map((link) => (
-                <Link key={link.href} href={link.href} className="nav-link">
-                  {link.label}
+        <DirectionProvider dir="ltr">
+          <TooltipProvider>
+            <div className="site-shell">
+              <header className="site-header">
+                <Link href="/" className="brand">
+                  hebrew-date-utils
                 </Link>
-              ))}
-            </nav>
-          </header>
-          <main className="page-content">{children}</main>
-          <footer className="site-footer">
-            <p>Built for date-only Hebrew and Gregorian workflows.</p>
-          </footer>
-        </div>
+                <nav className="top-nav" aria-label="Main navigation">
+                  {links.map((link) => (
+                    <Link key={link.href} href={link.href} className="nav-link">
+                      {link.label}
+                    </Link>
+                  ))}
+                </nav>
+              </header>
+              <main className="page-content">{children}</main>
+              <footer className="site-footer">
+                <p>Built for date-only Hebrew and Gregorian workflows.</p>
+              </footer>
+            </div>
+          </TooltipProvider>
+        </DirectionProvider>
       </body>
     </html>
   );
