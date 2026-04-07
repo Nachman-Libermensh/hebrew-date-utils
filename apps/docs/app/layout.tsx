@@ -1,7 +1,10 @@
 import type { Metadata } from "next";
 import Link from "next/link";
-import { Noto_Sans_Hebrew, Space_Grotesk } from "next/font/google";
+import { Noto_Sans_Hebrew, Space_Grotesk, Geist, Inter } from "next/font/google";
 import "./globals.css";
+import { cn } from "@/lib/utils";
+
+const inter = Inter({subsets:['latin'],variable:'--font-sans'});
 
 const displayFont = Space_Grotesk({
   subsets: ["latin"],
@@ -32,7 +35,7 @@ export default function RootLayout({
   return (
     <html
       lang="en"
-      className={`${displayFont.variable} ${hebrewFont.variable}`}
+      className={cn(displayFont.variable, hebrewFont.variable, "font-sans", inter.variable)}
     >
       <body>
         <div className="site-shell">
