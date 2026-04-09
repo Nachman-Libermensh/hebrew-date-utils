@@ -14,9 +14,21 @@ describe("formatting", () => {
   });
 
   it("uses the Hebrew year from DualDate for Adar month names", () => {
-    const adarInCommonYear = toDualDate({ day: 1, month: months.ADAR_I, year: 5785 });
-    const adarIInLeapYear = toDualDate({ day: 1, month: months.ADAR_I, year: 5784 });
-    const adarIIInLeapYear = toDualDate({ day: 1, month: months.ADAR_II, year: 5784 });
+    const adarInCommonYear = toDualDate({
+      day: 1,
+      month: months.ADAR_I,
+      year: 5785,
+    });
+    const adarIInLeapYear = toDualDate({
+      day: 1,
+      month: months.ADAR_I,
+      year: 5784,
+    });
+    const adarIIInLeapYear = toDualDate({
+      day: 1,
+      month: months.ADAR_II,
+      year: 5784,
+    });
 
     expect(hebrewMonthGematriya(adarInCommonYear)).toBe("אדר");
     expect(hebrewMonthGematriya(adarIInLeapYear)).toBe("אדר א׳");

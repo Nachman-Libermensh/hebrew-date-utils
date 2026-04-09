@@ -176,14 +176,14 @@ console.log(formatDualDate(inTwoYears));
 
 ### Module: `formatting`
 
-| Function                                   | Usage                                  | Expected Output           |
-| ------------------------------------------ | -------------------------------------- | ------------------------- | ---------- |
-| `formatGregorian(input, pattern?)`         | `formatGregorian(date, "yyyy-MM-dd")`  | formatted `string`        |
-| `formatHebrew(input, options?)`            | `formatHebrew(date, { locale: "he" })` | Hebrew formatted `string` |
-| `formatDualDate(input, gregorianPattern?)` | `formatDualDate(date)`                 | `"yyyy-MM-dd              | <hebrew>"` |
+| Function                                   | Usage                                  | Expected Output             |
+| ------------------------------------------ | -------------------------------------- | --------------------------- | ---------- |
+| `formatGregorian(input, pattern?)`         | `formatGregorian(date, "yyyy-MM-dd")`  | formatted `string`          |
+| `formatHebrew(input, options?)`            | `formatHebrew(date, { locale: "he" })` | Hebrew formatted `string`   |
+| `formatDualDate(input, gregorianPattern?)` | `formatDualDate(date)`                 | `"yyyy-MM-dd                | <hebrew>"` |
 | `hebrewMonthGematriya(input)`              | `hebrewMonthGematriya("Adar")`         | Hebrew month name in Hebrew |
-| `getWeekdayName(input, locale?, style?)`   | `getWeekdayName(date, "en-US")`        | weekday name (`string`)   |
-| `toIsoDate(input)`                         | `toIsoDate(date)`                      | `"yyyy-MM-dd"`            |
+| `getWeekdayName(input, locale?, style?)`   | `getWeekdayName(date, "en-US")`        | weekday name (`string`)     |
+| `toIsoDate(input)`                         | `toIsoDate(date)`                      | `"yyyy-MM-dd"`              |
 
 ### Module: `holidays`
 
