@@ -4,9 +4,9 @@ import {
   GREG_MONTH_NAMES_EN,
   GREG_MONTH_NAMES_HE,
 } from "./constants.js";
-import { months } from "./hebcal-compat.js";
+import { HDate, months } from "./hebcal-compat.js";
 import { toDualDate, toGregorian, toHDate } from "./conversion.js";
-import type { DualDateInput } from "./types.js";
+import type { DualDateInput, HebrewMonthInput } from "./types.js";
 
 const HEBREW_WEEKDAY_NAMES = [
   "ראשון",
@@ -17,6 +17,44 @@ const HEBREW_WEEKDAY_NAMES = [
   "שישי",
   "שבת",
 ] as const;
+
+const GEMATRIYA_REFERENCE_LEAP_YEAR = 5784;
+
+function normalizeHebrewMonthForGematriya(month: HebrewMonthInput): number {
+  if (typeof month === "number") {
+    if (!Number.isInteger(month) || month < 0 || month > 13) {
+      throw new RangeError(
+        "Hebrew month index must be an integer between 0 and 13.",
+      );
+    }
+
+    if (month === 13) {
+      return months.ADAR_II;
+    }
+
+    return month + 1;
+  }
+
+  const normalizedMonth = month.trim();
+  const enumMonth = (months as Record<string, number | undefined>)[
+    normalizedMonth.toUpperCase()
+  ];
+
+  if (typeof enumMonth === "number") {
+    return enumMonth;
+  }
+
+  return HDate.monthNum(normalizedMonth);
+}
+
+function extractMonthFromRenderedGematriya(renderedDate: string): string {
+  const firstSpace = renderedDate.indexOf(" ");
+  if (firstSpace === -1) {
+    return renderedDate;
+  }
+
+  return renderedDate.slice(firstSpace + 1);
+}
 
 /**
  * Options for Hebrew date rendering.
@@ -100,6 +138,21 @@ export function hebrewYearGematriya(year: number): string {
 export function hebrewDayGematriya(input: DualDateInput): string {
   const [day] = toHDate(input).renderGematriya(true).split(" ");
   return day ?? "";
+}
+
+/**
+ * Returns Hebrew month represented in gematria letters.
+ * Accepts Hebcal month names or zero-based month indexes (0-13).
+ */
+export function hebrewMonthGematriya(month: HebrewMonthInput): string {
+  const normalizedMonth = normalizeHebrewMonthForGematriya(month);
+  const renderedDate = toHDate({
+    day: 1,
+    month: normalizedMonth,
+    year: GEMATRIYA_REFERENCE_LEAP_YEAR,
+  }).renderGematriya(true, true);
+
+  return extractMonthFromRenderedGematriya(renderedDate);
 }
 
 /**

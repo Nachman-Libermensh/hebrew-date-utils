@@ -84,6 +84,7 @@ For usage examples and expected outputs for every function, see README.md.
 - formatGregorian(input, pattern?)
 - formatHebrew(input, options?)
 - formatDualDate(input, gregorianPattern?)
+- hebrewMonthGematriya(month)
 - getWeekdayName(input, locale?, style?)
 - toIsoDate(input)
 
