@@ -6,7 +6,7 @@ import {
 } from "./constants.js";
 import { HDate, months } from "./hebcal-compat.js";
 import { toDualDate, toGregorian, toHDate } from "./conversion.js";
-import type { DualDateInput, HebrewMonthInput } from "./types.js";
+import type { DualDate, DualDateInput } from "./types.js";
 
 const HEBREW_WEEKDAY_NAMES = [
   "ראשון",
@@ -19,32 +19,24 @@ const HEBREW_WEEKDAY_NAMES = [
 ] as const;
 
 const GEMATRIYA_REFERENCE_LEAP_YEAR = 5784;
+const GEMATRIYA_REFERENCE_COMMON_YEAR = 5785;
+const EXPLICIT_ADAR_I_PATTERN = /^adar\s+(i|1|rishon)$/;
+const EXPLICIT_ADAR_II_PATTERN = /^adar\s+(ii|2|sheni|sheini)$/;
 
-function normalizeHebrewMonthForGematriya(month: HebrewMonthInput): number {
-  if (typeof month === "number") {
-    if (!Number.isInteger(month) || month < 0 || month > 13) {
-      throw new RangeError(
-        "Hebrew month index must be an integer between 0 and 13.",
-      );
-    }
-
-    if (month === 13) {
-      return months.ADAR_II;
-    }
-
-    return month + 1;
+function isDualDate(value: unknown): value is DualDate {
+  if (!value || typeof value !== "object") {
+    return false;
   }
 
-  const normalizedMonth = month.trim();
-  const enumMonth = (months as Record<string, number | undefined>)[
-    normalizedMonth.toUpperCase()
-  ];
+  return "greg" in value && "heb" in value;
+}
 
-  if (typeof enumMonth === "number") {
-    return enumMonth;
-  }
-
-  return HDate.monthNum(normalizedMonth);
+function normalizeEnglishMonthName(monthName: string): string {
+  return monthName
+    .trim()
+    .toLowerCase()
+    .replace(/["'`]/g, "")
+    .replace(/[\s_-]+/g, " ");
 }
 
 function extractMonthFromRenderedGematriya(renderedDate: string): string {
@@ -54,6 +46,48 @@ function extractMonthFromRenderedGematriya(renderedDate: string): string {
   }
 
   return renderedDate.slice(firstSpace + 1);
+}
+
+function hebrewMonthFromMonthAndYear(month: number, year: number): string {
+  return extractMonthFromRenderedGematriya(
+    toHDate({
+      day: 1,
+      month,
+      year,
+    }).renderGematriya(true, true),
+  );
+}
+
+function hebrewMonthFromEnglishName(monthName: string): string {
+  const trimmedMonth = monthName.trim();
+  if (!trimmedMonth) {
+    throw new TypeError("Month name cannot be empty.");
+  }
+
+  const normalizedMonth = normalizeEnglishMonthName(trimmedMonth);
+  if (normalizedMonth === "adar") {
+    return hebrewMonthFromMonthAndYear(
+      months.ADAR_I,
+      GEMATRIYA_REFERENCE_COMMON_YEAR,
+    );
+  }
+
+  const enumKey = trimmedMonth.toUpperCase().replace(/[\s-]+/g, "_");
+  const enumMonth = (months as Record<string, number | undefined>)[enumKey];
+  const monthNumber =
+    typeof enumMonth === "number" ? enumMonth : HDate.monthNum(trimmedMonth);
+
+  const useLeapYearReference =
+    monthNumber === months.ADAR_II ||
+    EXPLICIT_ADAR_I_PATTERN.test(normalizedMonth) ||
+    EXPLICIT_ADAR_II_PATTERN.test(normalizedMonth);
+
+  return hebrewMonthFromMonthAndYear(
+    monthNumber,
+    useLeapYearReference
+      ? GEMATRIYA_REFERENCE_LEAP_YEAR
+      : GEMATRIYA_REFERENCE_COMMON_YEAR,
+  );
 }
 
 /**
@@ -142,17 +176,21 @@ export function hebrewDayGematriya(input: DualDateInput): string {
 
 /**
  * Returns Hebrew month represented in gematria letters.
- * Accepts Hebcal month names or zero-based month indexes (0-13).
+ * Accepts DualDate or Hebcal month name strings in English.
  */
-export function hebrewMonthGematriya(month: HebrewMonthInput): string {
-  const normalizedMonth = normalizeHebrewMonthForGematriya(month);
-  const renderedDate = toHDate({
-    day: 1,
-    month: normalizedMonth,
-    year: GEMATRIYA_REFERENCE_LEAP_YEAR,
-  }).renderGematriya(true, true);
+export function hebrewMonthGematriya(input: DualDate | string): string {
+  if (typeof input === "string") {
+    return hebrewMonthFromEnglishName(input);
+  }
 
-  return extractMonthFromRenderedGematriya(renderedDate);
+  if (!isDualDate(input)) {
+    throw new TypeError(
+      "hebrewMonthGematriya expects a DualDate or English month name.",
+    );
+  }
+
+  const hebDate = toHDate(input);
+  return hebrewMonthFromMonthAndYear(hebDate.getMonth(), hebDate.getFullYear());
 }
 
 /**

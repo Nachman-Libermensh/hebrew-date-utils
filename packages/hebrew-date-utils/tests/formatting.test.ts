@@ -1,23 +1,32 @@
 import { describe, expect, it } from "vitest";
+import { toDualDate } from "../src/conversion.js";
 import { hebrewMonthGematriya } from "../src/formatting.js";
+import { months } from "../src/hebcal-compat.js";
+import type { DualDate } from "../src/types.js";
 
 describe("formatting", () => {
-  it("returns gematria month for Hebcal month names", () => {
+  it("returns Hebrew month for English month input", () => {
     expect(hebrewMonthGematriya("Nisan")).toBe("ניסן");
     expect(hebrewMonthGematriya("NISAN")).toBe("ניסן");
-    expect(hebrewMonthGematriya("Tishrei")).toBe("תשרי");
+    expect(hebrewMonthGematriya("adar")).toBe("אדר");
+    expect(hebrewMonthGematriya("ADAR_I")).toBe("אדר א׳");
+    expect(hebrewMonthGematriya("ADAR_II")).toBe("אדר ב׳");
   });
 
-  it("supports zero-based month indexes from 0 to 13", () => {
-    expect(hebrewMonthGematriya(0)).toBe("ניסן");
-    expect(hebrewMonthGematriya(6)).toBe("תשרי");
-    expect(hebrewMonthGematriya(11)).toBe("אדר א׳");
-    expect(hebrewMonthGematriya(12)).toBe("אדר ב׳");
-    expect(hebrewMonthGematriya(13)).toBe("אדר ב׳");
+  it("uses the Hebrew year from DualDate for Adar month names", () => {
+    const adarInCommonYear = toDualDate({ day: 1, month: months.ADAR_I, year: 5785 });
+    const adarIInLeapYear = toDualDate({ day: 1, month: months.ADAR_I, year: 5784 });
+    const adarIIInLeapYear = toDualDate({ day: 1, month: months.ADAR_II, year: 5784 });
+
+    expect(hebrewMonthGematriya(adarInCommonYear)).toBe("אדר");
+    expect(hebrewMonthGematriya(adarIInLeapYear)).toBe("אדר א׳");
+    expect(hebrewMonthGematriya(adarIIInLeapYear)).toBe("אדר ב׳");
   });
 
-  it("throws for out-of-range month indexes", () => {
-    expect(() => hebrewMonthGematriya(-1)).toThrow(RangeError);
-    expect(() => hebrewMonthGematriya(14)).toThrow(RangeError);
+  it("throws for invalid input", () => {
+    expect(() => hebrewMonthGematriya("")).toThrow(TypeError);
+    expect(() => hebrewMonthGematriya(12 as unknown as DualDate)).toThrow(
+      TypeError,
+    );
   });
 });

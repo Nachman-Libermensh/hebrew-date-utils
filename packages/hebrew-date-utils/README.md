@@ -181,7 +181,7 @@ console.log(formatDualDate(inTwoYears));
 | `formatGregorian(input, pattern?)`         | `formatGregorian(date, "yyyy-MM-dd")`  | formatted `string`        |
 | `formatHebrew(input, options?)`            | `formatHebrew(date, { locale: "he" })` | Hebrew formatted `string` |
 | `formatDualDate(input, gregorianPattern?)` | `formatDualDate(date)`                 | `"yyyy-MM-dd              | <hebrew>"` |
-| `hebrewMonthGematriya(month)`              | `hebrewMonthGematriya("Nisan")`        | Hebrew month gematria     |
+| `hebrewMonthGematriya(input)`              | `hebrewMonthGematriya("Adar")`         | Hebrew month name in Hebrew |
 | `getWeekdayName(input, locale?, style?)`   | `getWeekdayName(date, "en-US")`        | weekday name (`string`)   |
 | `toIsoDate(input)`                         | `toIsoDate(date)`                      | `"yyyy-MM-dd"`            |
 
