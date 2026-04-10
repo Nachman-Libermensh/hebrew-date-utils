@@ -31,10 +31,9 @@ function SidebarModuleItem({
 }) {
   return (
     <SidebarMenuItem>
-      <SidebarMenuButton asChild className="h-auto items-start py-2.5">
+      <SidebarMenuButton asChild>
         <Link href={module.href}>
           <span className="font-semibold">{module.name}</span>
-          <span className="text-xs text-sidebar-foreground/70">{module.href}</span>
         </Link>
       </SidebarMenuButton>
       <SidebarMenuBadge>{badge}</SidebarMenuBadge>
@@ -64,7 +63,11 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {CORE_MODULE_DOCS.map((module) => (
-                <SidebarModuleItem key={module.slug} module={module} badge="core" />
+                <SidebarModuleItem
+                  key={module.slug}
+                  module={module}
+                  badge="core"
+                />
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
@@ -75,7 +78,11 @@ export function AppSidebar() {
           <SidebarGroupContent>
             <SidebarMenu>
               {COMPAT_MODULE_DOCS.map((module) => (
-                <SidebarModuleItem key={module.slug} module={module} badge="compat" />
+                <SidebarModuleItem
+                  key={module.slug}
+                  module={module}
+                  badge="compat"
+                />
               ))}
             </SidebarMenu>
           </SidebarGroupContent>
