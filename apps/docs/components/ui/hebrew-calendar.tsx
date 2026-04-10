@@ -1,24 +1,39 @@
 "use client"
 
 import * as React from "react"
+
+import { DayPicker, getDateLib, he } from "react-day-picker/hebrew"
 import {
-  DayPicker,
   getDefaultClassNames,
   type DayButton,
   type Locale,
 } from "react-day-picker"
 
-import { cn } from "@/lib/utils"
-import { Button, buttonVariants } from "@/components/ui/button"
-import { ChevronLeftIcon, ChevronRightIcon, ChevronDownIcon } from "lucide-react"
+import { getHebrewMonthNameHe, toDualDate } from "hebrew-date-utils"
+import {
+  hebrewDayGematriya,
+  hebrewYearGematriya,
+} from "hebrew-date-utils/formatting"
 
-function Calendar({
+import { Button, buttonVariants } from "@/components/ui/button"
+import { cn } from "@/lib/utils"
+import {
+  ChevronDownIcon,
+  ChevronLeftIcon,
+  ChevronRightIcon,
+} from "lucide-react"
+
+const weekdayLabels = ["א", "ב", "ג", "ד", "ה", "ו", "ש"] as const
+
+function HebrewCalendar({
   className,
   classNames,
   showOutsideDays = true,
   captionLayout = "label",
   buttonVariant = "ghost",
-  locale,
+  locale = he,
+  dir = "rtl",
+  dateLib,
   formatters,
   components,
   ...props
@@ -26,23 +41,54 @@ function Calendar({
   buttonVariant?: React.ComponentProps<typeof Button>["variant"]
 }) {
   const defaultClassNames = getDefaultClassNames()
+  const defaultDateLib = React.useMemo(() => getDateLib(), [])
+
+  const defaultFormatters = React.useMemo<
+    React.ComponentProps<typeof DayPicker>["formatters"]
+  >(
+    () => ({
+      formatCaption: (monthDate) => {
+        const dual = toDualDate(monthDate)
+        const monthName = getHebrewMonthNameHe(dual.hebMonth, dual.hebYear)
+
+        return `${monthName} ${hebrewYearGematriya(dual.hebYear)}`
+      },
+      formatDay: (dayDate) => hebrewDayGematriya(dayDate),
+      formatWeekdayName: (weekdayDate) => weekdayLabels[weekdayDate.getDay()],
+      formatYearDropdown: (yearDate, datelib) => {
+        const hebrewYear = toDualDate(yearDate).hebYear
+        const formattedYear = hebrewYearGematriya(
+          datelib?.getYear(yearDate) ?? hebrewYear
+        )
+
+        return formattedYear
+      },
+    }),
+    []
+  )
+
+  const mergedFormatters = React.useMemo(
+    () => ({
+      ...defaultFormatters,
+      ...formatters,
+    }),
+    [defaultFormatters, formatters]
+  )
 
   return (
     <DayPicker
       showOutsideDays={showOutsideDays}
       className={cn(
-        "group/calendar bg-background p-3 [--cell-radius:var(--radius-4xl)] [--cell-size:--spacing(8)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
+        "group/calendar bg-background p-2 [--cell-radius:var(--radius-md)] [--cell-size:--spacing(7)] in-data-[slot=card-content]:bg-transparent in-data-[slot=popover-content]:bg-transparent",
         String.raw`rtl:**:[.rdp-button\_next>svg]:rotate-180`,
         String.raw`rtl:**:[.rdp-button\_previous>svg]:rotate-180`,
         className
       )}
       captionLayout={captionLayout}
+      dir={dir}
       locale={locale}
-      formatters={{
-        formatMonthDropdown: (date) =>
-          date.toLocaleString(locale?.code, { month: "short" }),
-        ...formatters,
-      }}
+      dateLib={dateLib ?? defaultDateLib}
+      formatters={mergedFormatters}
       classNames={{
         root: cn("w-fit", defaultClassNames.root),
         months: cn(
@@ -147,13 +193,19 @@ function Calendar({
         Chevron: ({ className, orientation, ...props }) => {
           if (orientation === "left") {
             return (
-              <ChevronLeftIcon className={cn("rtl:rotate-180 size-4", className)} {...props} />
+              <ChevronLeftIcon
+                className={cn("size-4 rtl:rotate-180", className)}
+                {...props}
+              />
             )
           }
 
           if (orientation === "right") {
             return (
-              <ChevronRightIcon className={cn("rtl:rotate-180 size-4", className)} {...props} />
+              <ChevronRightIcon
+                className={cn("size-4 rtl:rotate-180", className)}
+                {...props}
+              />
             )
           }
 
@@ -162,7 +214,7 @@ function Calendar({
           )
         },
         DayButton: ({ ...props }) => (
-          <CalendarDayButton locale={locale} {...props} />
+          <HebrewCalendarDayButton locale={locale} {...props} />
         ),
         WeekNumber: ({ children, ...props }) => {
           return (
@@ -180,7 +232,7 @@ function Calendar({
   )
 }
 
-function CalendarDayButton({
+function HebrewCalendarDayButton({
   className,
   day,
   modifiers,
@@ -219,4 +271,4 @@ function CalendarDayButton({
   )
 }
 
-export { Calendar, CalendarDayButton }
+export { HebrewCalendar, HebrewCalendarDayButton }
