@@ -176,7 +176,7 @@ export function hebrewDayGematriya(input: DualDateInput): string {
 
 /**
  * Returns Hebrew month represented in gematria letters.
- * Accepts DualDate or Hebcal month name strings in English.
+ * Accepts DualDate or English Hebrew month name strings.
  */
 export function hebrewMonthGematriya(input: DualDate | string): string {
   if (typeof input === "string") {

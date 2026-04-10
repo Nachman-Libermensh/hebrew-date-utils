@@ -42,7 +42,7 @@ export function getDaysInHebrewMonth(
 }
 
 /**
- * Returns Hebrew month name using Hebcal transliteration.
+ * Returns Hebrew month name using the package transliteration.
  */
 export function getHebrewMonthName(
   month: HebrewMonthInput,

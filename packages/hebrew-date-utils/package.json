@@ -1,7 +1,7 @@
 {
   "name": "hebrew-date-utils",
-  "version": "0.1.5",
-  "description": "Date-only Hebrew/Gregorian utility toolkit built on @hebcal/core and date-fns",
+  "version": "0.2.0",
+  "description": "Date-only Hebrew/Gregorian utility toolkit built on jewish-date, jewish-holidays, and date-fns",
   "main": "./dist/index.js",
   "module": "./dist/index.js",
   "types": "./dist/index.d.ts",
@@ -86,7 +86,8 @@
     "jewish-calendar",
     "date-utils",
     "date-fns",
-    "hebcal"
+    "jewish-date",
+    "jewish-holidays"
   ],
   "author": "Nachman Libermensh",
   "license": "MIT",
@@ -107,8 +108,9 @@
   },
   "homepage": "https://github.com/Nachman-Libermensh/hebrew-date-utils#readme",
   "dependencies": {
-    "@hebcal/core": "^6.0.8",
-    "date-fns": "^4.1.0"
+    "date-fns": "^4.1.0",
+    "jewish-date": "^2.0.23",
+    "jewish-holidays": "^1.2.1"
   },
   "devDependencies": {
     "@types/node": "^25.5.2",

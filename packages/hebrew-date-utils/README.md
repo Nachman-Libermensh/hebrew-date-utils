@@ -1,6 +1,6 @@
 # hebrew-date-utils
 
-Date-only Hebrew/Gregorian utility toolkit built on top of `@hebcal/core` and `date-fns`.
+Date-only Hebrew/Gregorian utility toolkit built on top of `jewish-date`, `jewish-holidays`, and `date-fns`.
 
 EN: Practical extension layer for Hebrew and Gregorian date workflows.
 HE: שכבת הרחבה פרקטית לחישובי תאריכים עבריים ולועזיים.
@@ -219,7 +219,7 @@ console.log(formatDualDate(inTwoYears));
 
 ## Compatibility Exports
 
-You can directly import Hebcal core primitives:
+You can directly import compatibility primitives:
 
 ```ts
 import { HDate, months, HebrewCalendar } from "hebrew-date-utils";

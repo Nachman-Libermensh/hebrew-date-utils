@@ -127,4 +127,4 @@ Note:
 
 Imported from:
 
-- @hebcal/core
+- jewish-date + jewish-holidays compatibility layer (`src/hebcal-compat.ts`)

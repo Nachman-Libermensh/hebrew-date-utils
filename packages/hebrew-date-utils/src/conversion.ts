@@ -26,7 +26,7 @@ function normalizeLocalDate(date: Date): Date {
 }
 
 /**
- * Converts any supported input into a Hebcal HDate.
+ * Converts any supported input into a normalized Hebrew date (HDate).
  */
 export function toHDate(input: DualDateInput): HDate {
   if (isDualDate(input)) {

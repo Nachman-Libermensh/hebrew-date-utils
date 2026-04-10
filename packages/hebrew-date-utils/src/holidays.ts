@@ -12,6 +12,8 @@ import type {
 
 function toHolidayInfo(event: Event, locale: string): HolidayInfo {
   const dualDate = toDualDate(event.getDate());
+  const eventUrl = event.url();
+
   return {
     id: `${dualDate.hebYear}-${dualDate.hebMonth}-${dualDate.hebDay}-${event.getDesc()}`,
     name: event.getDesc(),
@@ -21,7 +23,7 @@ function toHolidayInfo(event: Event, locale: string): HolidayInfo {
     flags: event.getFlags(),
     observedInIsrael: event.observedInIsrael(),
     observedInDiaspora: event.observedInDiaspora(),
-    url: event.url(),
+    ...(eventUrl ? { url: eventUrl } : {}),
   };
 }
 
