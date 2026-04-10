@@ -657,7 +657,10 @@ function getMonthsInOrder(year: number): number[] {
     : [...HEBREW_MONTH_ORDER_COMMON];
 }
 
-function getJewishMonthFromNumber(month: number, year: number): JewishMonthType {
+function getJewishMonthFromNumber(
+  month: number,
+  year: number,
+): JewishMonthType {
   const map = isLeapYear(year)
     ? JEWISH_MONTH_BY_NUMBER_LEAP
     : JEWISH_MONTH_BY_NUMBER_COMMON;
@@ -735,7 +738,11 @@ function getDaysInYear(year: number): number {
   );
 }
 
-function toGregorianFromHebrewParts(day: number, month: number, year: number): Date {
+function toGregorianFromHebrewParts(
+  day: number,
+  month: number,
+  year: number,
+): Date {
   const normalizedMonth = resolveMonthNumber(month, year);
   const clampedDay = Math.min(day, getDaysInMonth(normalizedMonth, year));
   return normalizeLocalDate(
@@ -762,7 +769,11 @@ function getHebrewPartsFromGregorian(date: Date): {
   };
 }
 
-function shiftHebrewMonth(month: number, year: number, offset: number): {
+function shiftHebrewMonth(
+  month: number,
+  year: number,
+  offset: number,
+): {
   month: number;
   year: number;
 } {
@@ -965,7 +976,10 @@ function getFastsOnDate(date: BasicJewishDate): HolidayRule[] {
   );
 }
 
-function computeHolidayRulesForDate(date: BasicJewishDate, il = false): HolidayRule[] {
+function computeHolidayRulesForDate(
+  date: BasicJewishDate,
+  il = false,
+): HolidayRule[] {
   const diaspora = !il;
   const list: HolidayRule[] = [
     ...YOM_TOV_ISRAEL,
@@ -1042,7 +1056,11 @@ export class HDate {
       }
 
       const normalizedMonth = resolveMonthNumber(month, year);
-      this.value = toGregorianFromHebrewParts(dayOrValue, normalizedMonth, year);
+      this.value = toGregorianFromHebrewParts(
+        dayOrValue,
+        normalizedMonth,
+        year,
+      );
       return;
     }
 
@@ -1143,7 +1161,10 @@ export class HDate {
 
     if (unit === "month") {
       const shifted = shiftHebrewMonth(current.month, current.year, amount);
-      const day = Math.min(current.day, getDaysInMonth(shifted.month, shifted.year));
+      const day = Math.min(
+        current.day,
+        getDaysInMonth(shifted.month, shifted.year),
+      );
       return new HDate(day, shifted.month, shifted.year);
     }
 
@@ -1154,7 +1175,10 @@ export class HDate {
         current.year,
         targetYear,
       );
-      const day = Math.min(current.day, getDaysInMonth(targetMonth, targetYear));
+      const day = Math.min(
+        current.day,
+        getDaysInMonth(targetMonth, targetYear),
+      );
       return new HDate(day, targetMonth, targetYear);
     }
 
@@ -1276,7 +1300,10 @@ function createEventsForDate(date: HDate, il = false): Event[] {
 }
 
 export const HebrewCalendar = {
-  getBirthdayOrAnniversary(targetHebrewYear: number, original: HDate): HDate | null {
+  getBirthdayOrAnniversary(
+    targetHebrewYear: number,
+    original: HDate,
+  ): HDate | null {
     const month = adjustAdarAcrossLeapYears(
       original.getMonth(),
       original.getFullYear(),
@@ -1328,7 +1355,9 @@ export const HebrewCalendar = {
     const allEvents: Event[] = [];
 
     for (const day of eachDayOfInterval({ start, end })) {
-      allEvents.push(...createEventsForDate(new HDate(day), options.il ?? false));
+      allEvents.push(
+        ...createEventsForDate(new HDate(day), options.il ?? false),
+      );
     }
 
     return applyCalendarFilters(allEvents, options);
