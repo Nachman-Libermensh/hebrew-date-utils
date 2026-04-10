@@ -7,7 +7,6 @@ on:
     paths:
       - apps/docs/**
       - packages/hebrew-date-utils/**
-      - packages/hebrew-date-picker-react/**
       - .github/workflows/docs-pages.yml
       - package.json
       - pnpm-lock.yaml

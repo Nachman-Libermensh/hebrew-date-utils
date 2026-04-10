@@ -2,22 +2,22 @@ import Link from "next/link";
 
 const featureCards = [
   {
-    title: "hebrew-date-utils (Core)",
-    text: "Framework-agnostic Node.js library for Hebrew/Gregorian conversions, ranges, arithmetic, boundaries, and holidays.",
+    title: "Core API לפי מודולים",
+    text: "מיפוי מלא לכל מודולי הליבה: signatures, usage, expected output ו-playground אינטראקטיבי.",
     href: "/docs/api",
-    cta: "Explore Core API",
+    cta: "Open API Docs",
   },
   {
-    title: "Start in Any Node Project",
-    text: "Install only the core package and use it in scripts, APIs, services, queues, or serverless functions.",
+    title: "התחלה מהירה ב-Node.js",
+    text: "התקנה נקייה של hebrew-date-utils, מבנה עבודה מומלץ ודוגמת קוד ראשונה להפעלה מיידית.",
     href: "/docs/getting-started",
-    cta: "Quick Setup",
+    cta: "Start Here",
   },
   {
-    title: "React Picker Add-on",
-    text: "Optional UI layer built on top of the core package, with extensible classNames, modifiers, formatters, and components.",
-    href: "/docs/react-picker",
-    cta: "View React Add-on",
+    title: "Date Picker עם react-day-picker",
+    text: "מדריך step-by-step להטמעת בורר תאריכים עברי/לועזי כולל מצב טווח, עם קטעי קוד להעתקה.",
+    href: "/docs/date-picker",
+    cta: "Read Picker Guide",
   },
 ];
 
@@ -25,20 +25,19 @@ export default function HomePage() {
   return (
     <section className="hero-wrap">
       <div className="hero-panel">
-        <p className="eyebrow">Core-First Documentation</p>
-        <h1>Build on hebrew-date-utils Core, Then Add UI If You Need It</h1>
+        <p className="eyebrow">Official Documentation</p>
+        <h1>תיעוד מסודר ל-hebrew-date-utils, עם דגש על Core API ו-React Date Picker</h1>
         <p>
-          The primary package in this monorepo is{" "}
-          <strong>hebrew-date-utils</strong>. It is environment-agnostic and
-          fits any Node.js workflow. The React picker is documented as an
-          optional integration layer.
+          כאן תמצאו תיעוד מלא לספריית <strong>hebrew-date-utils</strong>, כולל
+          פונקציות ליבה, דוגמאות שימוש, ועמוד ייעודי לבניית בורר תאריכים נוח על
+          בסיס react-day-picker עם קומפוננטות עברי/לועזי.
         </p>
         <div className="hero-actions">
-          <Link href="/docs/api" className="primary-action">
-            Read Core API
+          <Link href="/docs/getting-started" className="primary-action">
+            התחלה מהירה
           </Link>
-          <Link href="/docs/getting-started" className="secondary-action">
-            Install in Node.js
+          <Link href="/docs/api" className="secondary-action">
+            Core API
           </Link>
         </div>
       </div>

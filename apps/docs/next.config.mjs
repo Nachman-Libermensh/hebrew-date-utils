@@ -5,6 +5,7 @@ const isGitHubPages = process.env.GITHUB_ACTIONS === "true";
 const basePath = isGitHubPages && repoName ? `/${repoName}` : "";
 
 const nextConfig = {
+  turbopack: {},
   output: "export",
   trailingSlash: true,
   images: {
@@ -13,7 +14,7 @@ const nextConfig = {
   basePath,
   assetPrefix: basePath,
   pageExtensions: ["ts", "tsx", "md", "mdx"],
-  transpilePackages: ["hebrew-date-utils", "hebrew-date-picker-react"],
+  transpilePackages: ["hebrew-date-utils"],
 };
 
 const withMDX = createMDX({

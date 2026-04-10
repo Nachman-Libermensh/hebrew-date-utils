@@ -3,20 +3,18 @@
   "private": true,
   "version": "0.1.5",
   "packageManager": "pnpm@10.6.5",
-  "description": "Monorepo for hebrew-date-utils core package, React date picker, and official docs site",
+  "description": "Monorepo for hebrew-date-utils core package and official docs site",
   "workspaces": [
     "packages/*",
     "apps/*"
   ],
   "scripts": {
-    "build": "pnpm --filter hebrew-date-utils build && pnpm --filter hebrew-date-picker-react build && pnpm --filter @hebrew-date-utils/docs build",
+    "build": "pnpm --filter hebrew-date-utils build && pnpm --filter @hebrew-date-utils/docs build",
     "build:core": "pnpm --filter hebrew-date-utils build",
-    "build:react-picker": "pnpm --filter hebrew-date-picker-react build",
     "build:docs": "pnpm --filter @hebrew-date-utils/docs build",
-    "dev:docs": "pnpm build:core && pnpm build:react-picker && pnpm --filter @hebrew-date-utils/docs dev",
+    "dev:docs": "pnpm build:core && pnpm --filter @hebrew-date-utils/docs dev",
     "publish:core": "pnpm --filter hebrew-date-utils publish --access public --no-git-checks",
-    "publish:react-picker": "pnpm --filter hebrew-date-picker-react publish --access public --no-git-checks",
     "test": "pnpm --filter hebrew-date-utils test",
-    "typecheck": "pnpm --filter hebrew-date-utils typecheck && pnpm --filter hebrew-date-picker-react typecheck && pnpm --filter @hebrew-date-utils/docs typecheck"
+    "typecheck": "pnpm --filter hebrew-date-utils typecheck && pnpm --filter @hebrew-date-utils/docs typecheck"
   }
 }

@@ -5,7 +5,6 @@ import "./globals.css";
 import { cn } from "@/lib/utils";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { DirectionProvider } from "@/components/ui/direction";
-import { TodayHebrewGematriya } from "@/components/today-hebrew-gematria";
 
 const hebrewFont = Noto_Sans_Hebrew({
   weight: ["300", "400", "500", "700"],
@@ -15,16 +14,15 @@ const hebrewFont = Noto_Sans_Hebrew({
 });
 
 export const metadata: Metadata = {
-  title: "Hebrew Date Utils Docs",
+  title: "hebrew-date-utils | Official Docs",
   description:
-    "Core-first documentation for hebrew-date-utils with an optional React picker add-on",
+    "Core-first documentation for hebrew-date-utils, with practical Node.js and react-day-picker integration guides.",
 };
 
 const links = [
-  { href: "/", label: "Home" },
-  { href: "/docs/api", label: "Core API (Main)" },
-  { href: "/docs/getting-started", label: "Getting Started" },
-  { href: "/docs/react-picker", label: "React Picker (Optional)" },
+  { href: "/docs/getting-started", label: "התחלה מהירה" },
+  { href: "/docs/date-picker", label: "Date Picker" },
+  { href: "/docs/api", label: "Core API" },
 ];
 
 export default function RootLayout({
@@ -41,9 +39,14 @@ export default function RootLayout({
           <TooltipProvider>
             <div className="site-shell">
               <header className="site-header">
-                <Link href="/" className="brand">
-                  hebrew-date-utils
-                </Link>
+                <div className="brand-wrap">
+                  <Link href="/" className="brand">
+                    hebrew-date-utils
+                  </Link>
+                  <p className="brand-subtitle">
+                    Core-first docs for Hebrew and Gregorian date workflows
+                  </p>
+                </div>
                 <nav className="top-nav" aria-label="Main navigation">
                   {links.map((link) => (
                     <Link key={link.href} href={link.href} className="nav-link">
@@ -54,8 +57,9 @@ export default function RootLayout({
               </header>
               <main className="page-content">{children}</main>
               <footer className="site-footer">
-                <p>Built for date-only Hebrew and Gregorian workflows.</p>
-                <TodayHebrewGematriya />
+                <p>
+                  Built for reliable Hebrew and Gregorian date-only workflows.
+                </p>
               </footer>
             </div>
           </TooltipProvider>

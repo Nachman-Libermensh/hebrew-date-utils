@@ -3,13 +3,11 @@
 Official monorepo for:
 
 - `hebrew-date-utils` core date-only Hebrew/Gregorian utility package
-- `hebrew-date-picker-react` customizable React date picker built on `hebrew-date-utils`
 - `@hebrew-date-utils/docs` static-export Next.js documentation site
 
 ## Workspace Layout
 
 - `packages/hebrew-date-utils` - core date utilities package
-- `packages/hebrew-date-picker-react` - React date picker package
 - `apps/docs` - official documentation site (Next.js static export)
 
 ## Development
@@ -31,7 +29,3 @@ pnpm dev:docs
 Core package is published from:
 
 - `packages/hebrew-date-utils`
-
-React date picker package is published from:
-
-- `packages/hebrew-date-picker-react`
