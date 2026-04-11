@@ -97,7 +97,8 @@ export function FunctionPickerDemo({
       )}
 
       <div className="rounded-md bg-muted px-2 py-1.5 text-[11px] text-muted-foreground">
-        נבחר: <span className="font-medium text-foreground">{selectedValue}</span>
+        נבחר:{" "}
+        <span className="font-medium text-foreground">{selectedValue}</span>
       </div>
     </div>
   );
